@@ -1506,6 +1506,8 @@
           }
         ],
         "isPage": true,
+        "editor_posx": 400,
+        "editor_posy": -400,
         "locked": false,
         "properties": [
           {
@@ -2172,6 +2174,7 @@
       "saved_objtypeKey": "ELOANIMATION"
     }
   ],
+  "selected_theme": "Default",
   "info": {
     "name": "demo5",
     "depth": 1,
@@ -2183,24 +2186,36 @@
     "shape": "RECTANGLE",
     "multilang": "DISABLE",
     "description": "",
-    "board": "Arduino with TFT_eSPI",
-    "board_version": "v1.1.1",
-    "editor_version": "1.3.4",
+    "board": "VS Code with SDL for development on PC",
+    "board_version": "v1.0.1",
+    "editor_version": "1.4.0",
     "image": "",
     "force_export_images": false,
     "flat_export": false,
+    "advanced_alpha": false,
     "pointfilter": false,
     "theme_simplified": false,
     "theme_dark": false,
     "theme_color1": 5,
     "theme_color2": 0,
     "uiExportFolderPath": "C:\\Users\\owner\\Documents\\PlatformIO\\Projects\\Squareline Studio CYD Base Project\\src\\ui",
-    "projectExportFolderPath": "C:\\Users\\owner\\Documents\\PlatformIO\\Projects\\Squareline Studio CYD Base Project\\src\\ui",
+    "projectExportFolderPath": "E:\\TEMPORAL\\BORRAR\\src\\ui",
     "backup_cnt": 63,
     "autosave_cnt": 0,
-    "lvgl_version": "8.3.6",
+    "lvgl_version": "8.3.11",
     "callfuncsexport": "CPP_FILE",
+    "imageexport": "SOURCE",
     "lvgl_include_path": "",
+    "drive_stdio": "-",
+    "drive_stdio_path": "",
+    "drive_posix": "-",
+    "drive_posix_path": "",
+    "drive_win32": "-",
+    "drive_win32_path": "",
+    "drive_fatfs": "-",
+    "drive_fatfs_path": "",
+    "naming": null,
+    "naming_force_lowercase": false,
     "BitDepth": 16,
     "Name": "demo5"
   }
