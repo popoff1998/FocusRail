@@ -1,10 +1,15 @@
-SET(SOURCES components/ui_comp_screen_1.c
-    components/ui_comp_screen1.c
-    components/ui_comp.c
+SET(SOURCES screens/ui_mainScreen.c
     screens/ui_Screen1.c
+    screens/ui_confScreen.c
+    screens/ui_movScreen.c
+    screens/ui_captScreen.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    ui_events.cpp)
+    ui_events.cpp
+    images/ui_img_home_png.c
+    images/ui_img_388382192.c
+    images/ui_img_1101766569.c
+    images/ui_img_885855874.c)
 
 add_library(ui ${SOURCES})

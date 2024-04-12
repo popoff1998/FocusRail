@@ -13,11 +13,22 @@ extern "C" {
 #include "lvgl/lvgl.h"
 
 #include "ui_helpers.h"
-#include "components/ui_comp.h"
-#include "components/ui_comp_hook.h"
 #include "ui_events.h"
 
 void bouncingball_Animation(lv_obj_t * TargetObject, int delay);
+// SCREEN: ui_mainScreen
+void ui_mainScreen_screen_init(void);
+extern lv_obj_t * ui_mainScreen;
+extern lv_obj_t * ui_Label3;
+void ui_event_goConfSc(lv_event_t * e);
+extern lv_obj_t * ui_goConfSc;
+extern lv_obj_t * ui_Label4;
+void ui_event_goMovSc(lv_event_t * e);
+extern lv_obj_t * ui_goMovSc;
+extern lv_obj_t * ui_Label5;
+void ui_event_goScreen3(lv_event_t * e);
+extern lv_obj_t * ui_goScreen3;
+extern lv_obj_t * ui_goCapSc;
 // SCREEN: ui_Screen1
 void ui_Screen1_screen_init(void);
 void ui_event_Screen1(lv_event_t * e);
@@ -29,9 +40,41 @@ void ui_event_Panel1(lv_event_t * e);
 extern lv_obj_t * ui_Panel1;
 extern lv_obj_t * ui_TextArea1;
 extern lv_obj_t * ui_Label2;
+// SCREEN: ui_confScreen
+void ui_confScreen_screen_init(void);
+extern lv_obj_t * ui_confScreen;
+void ui_event_ImgButton1(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton1;
+extern lv_obj_t * ui_Label6;
+// SCREEN: ui_movScreen
+void ui_movScreen_screen_init(void);
+extern lv_obj_t * ui_movScreen;
+void ui_event_ImgButton2(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton2;
+extern lv_obj_t * ui_Label7;
+extern lv_obj_t * ui_Dropdown1;
+extern lv_obj_t * ui_Label9;
+void ui_event_ImgButton4(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton4;
+void ui_event_ImgButton5(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton5;
+extern lv_obj_t * ui_movLabel;
+void ui_event_ImgButton6(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton6;
+// SCREEN: ui_captScreen
+void ui_captScreen_screen_init(void);
+extern lv_obj_t * ui_captScreen;
+void ui_event_ImgButton3(lv_event_t * e);
+extern lv_obj_t * ui_ImgButton3;
+extern lv_obj_t * ui_Label8;
+extern lv_obj_t * ui_TabView1;
 extern lv_obj_t * ui____initial_actions0;
 
 
+LV_IMG_DECLARE(ui_img_home_png);    // assets/home.png
+LV_IMG_DECLARE(ui_img_388382192);    // assets/left-arrow.png
+LV_IMG_DECLARE(ui_img_1101766569);    // assets/right-arrow.png
+LV_IMG_DECLARE(ui_img_885855874);    // assets/stop-button.png
 
 
 
