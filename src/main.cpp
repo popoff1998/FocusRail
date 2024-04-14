@@ -10,6 +10,8 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include "RGBledDriver.h"
+#include "movement.h"
+#include "capture.h"
 
 /*Using LVGL with Arduino requires some extra steps:
  *Be sure to read the docs here: https://docs.lvgl.io/master/get-started/platforms/arduino.html  */
@@ -115,6 +117,11 @@ void setup()
 
     initRGBled();
     ChangeRGBColor(RGB_COLOR_1);
+
+    //Inicialización del motor
+    initMotor();
+    //Inicialización de la captura
+    initCapture();
 
     lv_init();
 

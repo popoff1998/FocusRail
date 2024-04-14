@@ -29,14 +29,15 @@ void ui_movScreen_screen_init(void)
     lv_obj_set_align(ui_Label7, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label7, "Movimiento");
 
-    ui_Dropdown1 = lv_dropdown_create(ui_movScreen);
-    lv_dropdown_set_options(ui_Dropdown1, "1 cm\n1 mm\n0,1 mm");
-    lv_obj_set_width(ui_Dropdown1, 83);
-    lv_obj_set_height(ui_Dropdown1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Dropdown1, 92);
-    lv_obj_set_y(ui_Dropdown1, -42);
-    lv_obj_set_align(ui_Dropdown1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Dropdown1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    ui_dropDownDistMov = lv_dropdown_create(ui_movScreen);
+    lv_dropdown_set_options(ui_dropDownDistMov, "1 cm\n1 mm\n0,1 mm");
+    lv_dropdown_set_selected_highlight(ui_dropDownDistMov, false);
+    lv_obj_set_width(ui_dropDownDistMov, 83);
+    lv_obj_set_height(ui_dropDownDistMov, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_dropDownDistMov, 92);
+    lv_obj_set_y(ui_dropDownDistMov, -42);
+    lv_obj_set_align(ui_dropDownDistMov, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_dropDownDistMov, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
 
 
 
@@ -81,6 +82,7 @@ void ui_movScreen_screen_init(void)
     lv_obj_set_align(ui_ImgButton6, LV_ALIGN_CENTER);
 
     lv_obj_add_event_cb(ui_ImgButton2, ui_event_ImgButton2, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_dropDownDistMov, ui_event_dropDownDistMov, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ImgButton4, ui_event_ImgButton4, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ImgButton5, ui_event_ImgButton5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ImgButton6, ui_event_ImgButton6, LV_EVENT_ALL, NULL);

@@ -7,53 +7,71 @@
 #include "ui.h"
 #include "stdio.h"
 #include "RGBledDriver.h"
+#include "movement.h"
+#include "capture.h"
 
-int indx = 1;
-char buf[3];
 
-void Button1PressedAction(lv_event_t *e)
+void movDistChange(lv_event_t * e)
 {
-	int newColor;
-	indx++;
+	//Leo el valor del dropDownMovDist
+	int indice = lv_dropdown_get_selected(lv_event_get_current_target(e));
+	//La almacenamos en la variable global movDistance
+	movDistance = movDistances[indice];
+}
 
-	sprintf(buf, "%d", indx);
-	lv_textarea_set_placeholder_text(ui_TextArea1, buf);
+void movBackward(lv_event_t * e)
+{
+	//Movemos el motor hacia atrás
+	moveMotorDistance(movDistance, BACKWARD);
+}
 
-	if (indx == 1)
+void movForward(lv_event_t * e)
+{
+	//Movemos el motor hacia adelante
+	moveMotorDistance(movDistance, FORWARD);
+}
+
+void setCamType(lv_event_t * e)
+{
+	//Ponemos camType en funcion del dropdown
+	camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
+}
+
+void setCamInterface(lv_event_t * e)
+{
+	// Ponemos camInterface en funcion del dropdown
+	camInterface = lv_dropdown_get_selected(lv_event_get_current_target(e));
+}
+
+void setCapProf(lv_event_t * e)
+{
+	// Ponemos capProf en funcion del slider
+	capProf = lv_slider_get_value(lv_event_get_current_target(e));
+}
+
+void setCapFotos(lv_event_t * e)
+{
+	// Ponemos capFotos en funcion del slider
+	capFotos = lv_slider_get_value(lv_event_get_current_target(e));
+}
+
+void setCapTime(lv_event_t * e)
+{
+	// Ponemos capTime en funcion del slider
+	capTime = lv_slider_get_value(lv_event_get_current_target(e));
+}
+
+void startCapture(lv_event_t * e)
+{
+	//Calculamos la distancia de movimiento en funcion de captFotos y capProf
+	float distance = capProf / capFotos;
+
+	// Iniciamos la captura de fotos
+	for (int i = 0; i < capFotos; i++)
 	{
-
-		newColor = RGB_COLOR_1;
-		lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(newColor), LV_PART_MAIN);
-		ChangeRGBColor(newColor);
+		capturePhoto();
+		delay(capTime * 1000);
+		// Movemos el motor hacia adelante
+		moveMotorDistance(distance, FORWARD);
 	}
-
-	else if (indx == 2)
-	{
-		newColor = RGB_COLOR_2;
-		lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(newColor), LV_PART_MAIN);
-		ChangeRGBColor(newColor);
-	}
-
-	else if (indx == 3)
-	{
-		newColor = RGB_COLOR_3;
-		lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(newColor), LV_PART_MAIN);
-		ChangeRGBColor(newColor);
-	}
-
-	else if (indx == 4)
-	{
-		newColor = RGB_COLOR_4;
-		lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(newColor), LV_PART_MAIN);
-		ChangeRGBColor(newColor);
-	}
-
-	else if (indx == 5)
-	{
-		newColor = RGB_COLOR_5;
-		lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(newColor), LV_PART_MAIN);
-		ChangeRGBColor(newColor);
-		indx = 0;
-	}
-	
 }

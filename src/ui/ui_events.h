@@ -10,7 +10,15 @@
 extern "C" {
 #endif
 
-void Button1PressedAction(lv_event_t * e);
+void setCamType(lv_event_t * e);
+void setCamInterface(lv_event_t * e);
+void movDistChange(lv_event_t * e);
+void movBackward(lv_event_t * e);
+void movForward(lv_event_t * e);
+void setCapProf(lv_event_t * e);
+void setCapFotos(lv_event_t * e);
+void setCapTime(lv_event_t * e);
+void startCapture(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

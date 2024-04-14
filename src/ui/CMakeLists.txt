@@ -1,5 +1,4 @@
 SET(SOURCES screens/ui_mainScreen.c
-    screens/ui_Screen1.c
     screens/ui_confScreen.c
     screens/ui_movScreen.c
     screens/ui_captScreen.c

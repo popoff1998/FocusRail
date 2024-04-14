@@ -21,14 +21,102 @@ void ui_confScreen_screen_init(void)
     lv_obj_set_y(ui_ImgButton1, 88);
     lv_obj_set_align(ui_ImgButton1, LV_ALIGN_CENTER);
 
+    ui_Label1 = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label1, -118);
+    lv_obj_set_y(ui_Label1, -73);
+    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label1, "Camara");
+
+    ui_camType = lv_dropdown_create(ui_confScreen);
+    lv_dropdown_set_options(ui_camType, "Canon\nNikon");
+    lv_obj_set_width(ui_camType, 150);
+    lv_obj_set_height(ui_camType, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_camType, 71);
+    lv_obj_set_y(ui_camType, -75);
+    lv_obj_set_align(ui_camType, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_camType, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+
+
+
+    ui_interfaceType = lv_dropdown_create(ui_confScreen);
+    lv_dropdown_set_options(ui_interfaceType, "Cable\nInfrarojos");
+    lv_obj_set_width(ui_interfaceType, 150);
+    lv_obj_set_height(ui_interfaceType, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_interfaceType, 74);
+    lv_obj_set_y(ui_interfaceType, -33);
+    lv_obj_set_align(ui_interfaceType, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_interfaceType, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+
+
+
+    ui_Label2 = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label2, -115);
+    lv_obj_set_y(ui_Label2, -33);
+    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label2, "Interfaz");
+
     ui_Label6 = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_Label6, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label6, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label6, -5);
-    lv_obj_set_y(ui_Label6, -94);
+    lv_obj_set_x(ui_Label6, -107);
+    lv_obj_set_y(ui_Label6, 7);
     lv_obj_set_align(ui_Label6, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label6, "Configuracion");
+    lv_label_set_text(ui_Label6, "Fotos def.");
+
+    ui_defFotosLabel = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_defFotosLabel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_defFotosLabel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_defFotosLabel, -33);
+    lv_obj_set_y(ui_defFotosLabel, 8);
+    lv_obj_set_align(ui_defFotosLabel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_defFotosLabel, "1");
+
+    ui_Label8 = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label8, -108);
+    lv_obj_set_y(ui_Label8, 44);
+    lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label8, "Prof. def.");
+
+    ui_defProfLabel = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_defProfLabel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_defProfLabel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_defProfLabel, -33);
+    lv_obj_set_y(ui_defProfLabel, 42);
+    lv_obj_set_align(ui_defProfLabel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_defProfLabel, "10");
+
+    ui_Slider2 = lv_slider_create(ui_confScreen);
+    lv_slider_set_range(ui_Slider2, 1, 30);
+    lv_slider_set_value(ui_Slider2, 10, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_Slider2) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider2, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_Slider2, 150);
+    lv_obj_set_height(ui_Slider2, 10);
+    lv_obj_set_x(ui_Slider2, 70);
+    lv_obj_set_y(ui_Slider2, 43);
+    lv_obj_set_align(ui_Slider2, LV_ALIGN_CENTER);
+
+
+    ui_Slider3 = lv_slider_create(ui_confScreen);
+    lv_slider_set_range(ui_Slider3, 1, 30);
+    lv_slider_set_value(ui_Slider3, 1, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_Slider3) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider3, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_Slider3, 150);
+    lv_obj_set_height(ui_Slider3, 10);
+    lv_obj_set_x(ui_Slider3, 72);
+    lv_obj_set_y(ui_Slider3, 7);
+    lv_obj_set_align(ui_Slider3, LV_ALIGN_CENTER);
+
 
     lv_obj_add_event_cb(ui_ImgButton1, ui_event_ImgButton1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_camType, ui_event_camType, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_interfaceType, ui_event_interfaceType, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Slider3, ui_event_Slider3, LV_EVENT_ALL, NULL);
 
 }
