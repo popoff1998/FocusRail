@@ -63,15 +63,6 @@ void setCapTime(lv_event_t * e)
 
 void startCapture(lv_event_t * e)
 {
-	//Calculamos la distancia de movimiento en funcion de captFotos y capProf
-	float distance = capProf / capFotos;
-
 	// Iniciamos la captura de fotos
-	for (int i = 0; i < capFotos; i++)
-	{
-		capturePhoto();
-		delay(capTime * 1000);
-		// Movemos el motor hacia adelante
-		moveMotorDistance(distance, FORWARD);
-	}
+	capturePhotos();	
 }

@@ -24,6 +24,7 @@ extern int camInterface;
 //Prototipos de las funciones de capture.cpp
 void initCapture();
 void capturePhoto();
+void capturePhotos();
 
 //Fin del archivo capture.h
 // Path: src/capture.cpp
