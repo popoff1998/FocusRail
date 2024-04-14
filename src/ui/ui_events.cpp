@@ -6,9 +6,9 @@
 #include <Arduino.h>
 #include "ui.h"
 #include "stdio.h"
-#include "RGBledDriver.h"
 #include "movement.h"
 #include "capture.h"
+#include "camera.h	"
 
 
 void movDistChange(lv_event_t * e)
@@ -35,6 +35,7 @@ void setCamType(lv_event_t * e)
 {
 	//Ponemos camType en funcion del dropdown
 	camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
+	setCamera(camType);
 }
 
 void setCamInterface(lv_event_t * e)

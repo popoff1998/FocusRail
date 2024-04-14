@@ -3344,7 +3344,7 @@
               {
                 "nid": 1774393595,
                 "strtype": "DROPDOWN/Options",
-                "strval": "Canon\\nNikon",
+                "strval": "Canon\\nNikon\\nOlympus\\nPentax\\nSony\\nMinolta",
                 "InheritedType": 10
               },
               {
@@ -3408,7 +3408,7 @@
               {
                 "disabled": false,
                 "nid": 1136770532,
-                "strtype": "DROPDOWN/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -3431,7 +3431,7 @@
                   },
                   {
                     "nid": 578502253,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -3797,7 +3797,7 @@
               {
                 "disabled": false,
                 "nid": -57893131,
-                "strtype": "DROPDOWN/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -3820,7 +3820,7 @@
                   },
                   {
                     "nid": 952075866,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -5560,7 +5560,7 @@
               {
                 "disabled": false,
                 "nid": -2022866892,
-                "strtype": "SLIDER/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -5583,7 +5583,7 @@
                   },
                   {
                     "nid": -796221690,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "SET TEXT VALUE FROM SLIDER",
                     "childs": [
                       {
@@ -5899,7 +5899,7 @@
               {
                 "disabled": false,
                 "nid": 167843107,
-                "strtype": "SLIDER/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -5922,7 +5922,7 @@
                   },
                   {
                     "nid": 2029663410,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "SET TEXT VALUE FROM SLIDER",
                     "childs": [
                       {
@@ -11402,7 +11402,7 @@
               {
                 "disabled": false,
                 "nid": -998944333,
-                "strtype": "LABEL/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -11697,7 +11697,7 @@
               {
                 "disabled": false,
                 "nid": -1646700390,
-                "strtype": "SLIDER/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -11720,7 +11720,7 @@
                   },
                   {
                     "nid": 650121340,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "SET TEXT VALUE FROM SLIDER",
                     "childs": [
                       {
@@ -11764,7 +11764,7 @@
                   },
                   {
                     "nid": -401132730,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -12074,7 +12074,7 @@
               {
                 "disabled": false,
                 "nid": 973465185,
-                "strtype": "SLIDER/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -12097,7 +12097,7 @@
                   },
                   {
                     "nid": -1007611420,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "SET TEXT VALUE FROM SLIDER",
                     "childs": [
                       {
@@ -12141,7 +12141,7 @@
                   },
                   {
                     "nid": -1072071679,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -12451,7 +12451,7 @@
               {
                 "disabled": false,
                 "nid": 736040256,
-                "strtype": "SLIDER/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "VALUE_CHANGED",
                 "childs": [
                   {
@@ -12474,7 +12474,7 @@
                   },
                   {
                     "nid": -474203837,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "SET TEXT VALUE FROM SLIDER",
                     "childs": [
                       {
@@ -12518,7 +12518,7 @@
                   },
                   {
                     "nid": -1048037077,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -13111,7 +13111,7 @@
               {
                 "disabled": false,
                 "nid": 464120294,
-                "strtype": "BUTTON/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "CLICKED",
                 "childs": [
                   {
@@ -13134,7 +13134,7 @@
                   },
                   {
                     "nid": 1419562547,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -13993,7 +13993,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "E:\\TEMPORAL\\BORRAR\\src\\ui",
     "projectExportFolderPath": "E:\\TEMPORAL\\BORRAR\\src\\ui",
-    "backup_cnt": 155,
+    "backup_cnt": 162,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.11",
     "callfuncsexport": "CPP_FILE",

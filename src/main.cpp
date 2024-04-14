@@ -9,9 +9,9 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include "RGBledDriver.h"
 #include "movement.h"
 #include "capture.h"
+#include "camera.h"
 
 /*Using LVGL with Arduino requires some extra steps:
  *Be sure to read the docs here: https://docs.lvgl.io/master/get-started/platforms/arduino.html  */

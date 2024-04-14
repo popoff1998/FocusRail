@@ -1,4 +1,6 @@
 //Control de la captura de fotos
+#include "MD_multiCameraIrControl.h"
+#include "camera.h"
 #include "capture.h"
 #include <Arduino.h>
 
@@ -12,12 +14,6 @@ int camInterface;
 
 void initCapture()
 {
-    // Configuración de los pines de control de la cámara
-    pinMode(CAPTURE_CABLE_PIN, OUTPUT);
-    pinMode(CAPTURE_IR_PIN, OUTPUT); 
-    //Por defecto la cámara es Canon y la interfaz es por cable
-    camType = CANON;
-    camInterface = CABLE;
     //Ponemos los valores por defecto de la captura
     capProf = 10;
     capFotos = 10;
@@ -43,8 +39,31 @@ void capturePhotos()
 }
 
 // Función para capturar una foto
-void capturePhoto()
+void capturePhoto(int camInterface)
 {
+    // Dependiendo de la interfaz de la cámara disparamos de una forma u otra
+    if (camInterface == CABLE)
+    {
+        captureByCable();
+    }
+    else if (camInterface == IR)
+    {
+        captureByIR();
+    }
 }
 
+// Funcion para disparar la cámara por cable
+void captureByCable()
+{
+    // Disparamos la cámara
+    digitalWrite(CAPTURE_CABLE_PIN, HIGH);
+    delay(100);
+    digitalWrite(CAPTURE_CABLE_PIN, LOW);
+}
 
+// Fucnion para disparar la cámara por infrarrojos
+void captureByIR()
+{
+    // Hacemos un shutterNow de camera
+    camera.shutterNow();
+}

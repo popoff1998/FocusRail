@@ -15,8 +15,6 @@
 //Definimos los milimetros por vuelta del motor
 #define MM_PER_REVOLUTION 2
 
-
-
 //Variables globales
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
@@ -24,7 +22,7 @@
 extern float movDistance;
 extern float movDistances[3];
 #endif
-//Protoripos de las funciones de movement.cpp
+//Prototipos de las funciones de movement.cpp
 void initMotor();
 void moveMotorSteps(int, int);
 void moveMotorDistance(float, int);

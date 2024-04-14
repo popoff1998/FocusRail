@@ -30,7 +30,7 @@ void ui_confScreen_screen_init(void)
     lv_label_set_text(ui_Label1, "Camara");
 
     ui_camType = lv_dropdown_create(ui_confScreen);
-    lv_dropdown_set_options(ui_camType, "Canon\nNikon");
+    lv_dropdown_set_options(ui_camType, "Canon\nNikon\nOlympus\nPentax\nSony\nMinolta");
     lv_obj_set_width(ui_camType, 150);
     lv_obj_set_height(ui_camType, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_camType, 71);
