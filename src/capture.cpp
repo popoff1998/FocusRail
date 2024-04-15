@@ -2,6 +2,8 @@
 #include "MD_multiCameraIrControl.h"
 #include "camera.h"
 #include "capture.h"
+#include "movement.h"
+#include "configuration.h"
 #include <Arduino.h>
 
 //Definimos las variables globales
@@ -17,11 +19,11 @@ void initCapture()
     //Ponemos los valores por defecto de la captura
     capProf = 10;
     capFotos = 10;
-    capTime = 1;   
+    capTime = 1;
 }
 
 // Funcion para iniciar la captura de fotos
-void capturePhotos()
+void capturePhotos(camera)
 {
     //Calculamos la distancia de movimiento en funcion de captFotos y capProf
     float distance = (float)capProf / (float)capFotos;
@@ -34,32 +36,25 @@ void capturePhotos()
         // Esperamos el tiempo de captura
         delay(capTime * 1000);
         // Capturamos la foto
-        capturePhoto();
+        capturePhoto(camera);
     }
 }
 
 // Función para capturar una foto
-void capturePhoto(int camInterface)
+void capturePhoto(Camera camera)
 {
     // Dependiendo de la interfaz de la cámara disparamos de una forma u otra
-    if (camInterface == CABLE)
+    if (Camera.camInterface == CABLE)
     {
-        captureByCable();
+        camera.captureByCable();
     }
     else if (camInterface == IR)
     {
-        captureByIR();
+        camera.captureByIR();
     }
 }
 
-// Funcion para disparar la cámara por cable
-void captureByCable()
-{
-    // Disparamos la cámara
-    digitalWrite(CAPTURE_CABLE_PIN, HIGH);
-    delay(100);
-    digitalWrite(CAPTURE_CABLE_PIN, LOW);
-}
+
 
 // Fucnion para disparar la cámara por infrarrojos
 void captureByIR()

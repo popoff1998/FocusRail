@@ -1,6 +1,7 @@
 //Control de la camara
 #include "camera.h"
 #include "MD_multiCameraIrControl.h"
+#include "configuration.h"
 #include <Arduino.h>
 
 //Función para inicializar la cámara
@@ -13,6 +14,7 @@ Camera initCamera()
     Camera cam;
     cam.setCamera(CANON);
     cam.setInterface(CABLE);
+	return cam;
 }
 
 //Funcion setCamera
@@ -21,19 +23,35 @@ void Camera::setCamera(int camType)
     //Si el interfaz es por cable
     if (camInterface == CABLE)
     {
-        
     }
- 
-void setCameraIR(int camType)
+}
+
+// Funcion para disparar la cámara por cable
+void Camera::captureByCable()
+{
+    // Disparamos la cámara
+    digitalWrite(CAPTURE_CABLE_PIN, HIGH);
+    delay(100);
+    digitalWrite(CAPTURE_CABLE_PIN, LOW);
+}
+
+// Funcion para disparar la cámara por infrarrojos
+void Camera::captureByIR()
+{
+	// Disparamos la cámara
+	irInterface->shutterNow();
+}
+
+void Camera::setCameraIR(int camType)
 {
     //Si ya estaba definida la cámara la eliminamos
-    if (camera != NULL)
+    if (irInterface != NULL)
     {
         delete camera;
     }
     //Definimos la cámara
     switch (camType)
-    {   
+    {
         case CANON:
             camera = new Canon(CAMERA_IR_PIN);
             break;

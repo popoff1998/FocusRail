@@ -1,12 +1,13 @@
+#include "MD_multiCameraIrControl.h"
+
 // Defines de los pines de control de la cámara
 #define CAMERA_CABLE_PIN 32
 #define CAMERA_IR_PIN 33
+#define CAPTURE_CABLE_PIN 34
 
 // Variables globales
 #ifndef CAMERA_H
 #define CAMERA_H
-// Variable Camera
-//extern cCamera *camera;
 #endif
 
 class Camera
@@ -15,10 +16,14 @@ class Camera
         Camera();
         void initCamera();
         void setCamera(int);
-    private:
-        cCamera *irInterface;
+		void setInterface(int);
+		void captureByIR();
+		void setCameraIR(int);
+		void captureByCable();
         int camType;
         int camInterface;
+        cCamera* irInterface;
+    private:
 };
 
 //Fin del archivo configuration.h

@@ -11,7 +11,7 @@ extern int capTime;
 #endif
 //Prototipos de las funciones de capture.cpp
 void initCapture();
-void capturePhoto();
+void capturePhoto(Camera *cam);
 void capturePhotos();
 
 //Fin del archivo capture.h
