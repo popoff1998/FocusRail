@@ -9,8 +9,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include "movement.h"
-#include "capture.h"
+#include "motor.h "
 #include "camera.h"
 
 /*Using LVGL with Arduino requires some extra steps:
@@ -105,6 +104,9 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
     }
 }
 
+Camera MyCamera;
+Motor MyMotor;
+
 void setup()
 {
     Serial.begin(115200); /* prepare for possible serial debug */
@@ -113,23 +115,21 @@ void setup()
     LVGL_Arduino += String('V') + lv_version_major() + "." + lv_version_minor() + "." + lv_version_patch();
 
     Serial.println(LVGL_Arduino);
-    Serial.println("I am LVGL_Arduino");
+        Serial.println("I am LVGL_Arduino");
 
-    initRGBled();
-    ChangeRGBColor(RGB_COLOR_1);
 
-    //Inicialización del motor
-    initMotor();
-    //Inicialización de la captura
-    initCapture();
+        //Inicialización del motor
+        MyMotor.initMotor();
+        //Inicialización de la camara
+        MyCamera.initCamera();
 
-    lv_init();
+        lv_init();
 
-#if LV_USE_LOG != 0
-    lv_log_register_print_cb(my_print); /* register print function for debugging */
-#endif
+    #if LV_USE_LOG != 0
+        lv_log_register_print_cb(my_print); /* register print function for debugging */
+    #endif
 
-    mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS); /* Start second SPI bus for touchscreen */
+        mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS); /* Start second SPI bus for touchscreen */
     ts.begin(mySpi);                                                  /* Touchscreen init */
     ts.setRotation(1);                                                /* Landscape orientation */
 

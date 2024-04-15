@@ -6,64 +6,70 @@
 #include <Arduino.h>
 #include "ui.h"
 #include "stdio.h"
-#include "movement.h"
-#include "capture.h"
-#include "camera.h	"
+#include "motor.h"
+#include "camera.h"
 
+//Variable Mycamera global
+extern Camera MyCamera;
+extern Motor MyMotor;
 
 void movDistChange(lv_event_t * e)
 {
 	//Leo el valor del dropDownMovDist
 	int indice = lv_dropdown_get_selected(lv_event_get_current_target(e));
 	//La almacenamos en la variable global movDistance
-	movDistance = movDistances[indice];
+	MyMotor.setMovDistance(indice);
 }
 
 void movBackward(lv_event_t * e)
 {
 	//Movemos el motor hacia atrás
-	moveMotorDistance(movDistance, BACKWARD);
+	MyMotor.moveMotorDistance(MyMotor.movDistance, BACKWARD);
 }
 
 void movForward(lv_event_t * e)
 {
 	//Movemos el motor hacia adelante
-	moveMotorDistance(movDistance, FORWARD);
+	MyMotor.moveMotorDistance(MyMotor.movDistance, FORWARD);
 }
 
 void setCamType(lv_event_t * e)
 {
 	//Ponemos camType en funcion del dropdown
-	camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
-	setCamera(camType);
+	int camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
+	MyCamera.setCamera(camType);
 }
 
 void setCamInterface(lv_event_t * e)
 {
 	// Ponemos camInterface en funcion del dropdown
-	camInterface = lv_dropdown_get_selected(lv_event_get_current_target(e));
+	int camInterface = lv_dropdown_get_selected(lv_event_get_current_target(e));
+	MyCamera.Camera::setInterface(camInterface);
 }
 
 void setCapProf(lv_event_t * e)
 {
 	// Ponemos capProf en funcion del slider
-	capProf = lv_slider_get_value(lv_event_get_current_target(e));
+	int capProf = lv_slider_get_value(lv_event_get_current_target(e));
+	MyCamera.capProf = capProf;
 }
 
 void setCapFotos(lv_event_t * e)
 {
 	// Ponemos capFotos en funcion del slider
-	capFotos = lv_slider_get_value(lv_event_get_current_target(e));
+	int capFotos = lv_slider_get_value(lv_event_get_current_target(e));
+	MyCamera.capFotos = capFotos;
 }
 
 void setCapTime(lv_event_t * e)
 {
 	// Ponemos capTime en funcion del slider
-	capTime = lv_slider_get_value(lv_event_get_current_target(e));
+	int capTime = lv_slider_get_value(lv_event_get_current_target(e));
+	MyCamera.capTime = capTime;
 }
 
 void startCapture(lv_event_t * e)
 {
 	// Iniciamos la captura de fotos
-	capturePhotos();	
+	MyCamera.capturePhotos();	
 }

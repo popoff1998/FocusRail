@@ -2,29 +2,64 @@
 #include "camera.h"
 #include "MD_multiCameraIrControl.h"
 #include "configuration.h"
+#include "motor.h"
 #include <Arduino.h>
 
+extern Motor MyMotor;
+
 //Función para inicializar la cámara
-Camera initCamera()
+void Camera::initCamera()
 {
     // Configuración de los pines de control de la cámara
     pinMode(CAMERA_CABLE_PIN, OUTPUT);
     pinMode(CAMERA_IR_PIN, OUTPUT);
     // Por defecto la cámara es Canon y la interfaz es por cable
-    Camera cam;
-    cam.setCamera(CANON);
-    cam.setInterface(CABLE);
-	return cam;
+    setCamera(CANON);
+    setInterface(CABLE);
+}
+
+// Función para capturar una foto
+void Camera::capturePhoto()
+{
+    // Dependiendo de la interfaz de la cámara disparamos de una forma u otra
+    if (camInterface == CABLE)
+    {
+        captureByCable();
+    }
+    else if (camInterface == IR)
+    {
+        captureByIR();
+    }
+}
+// Funcion para iniciar la captura de fotos
+void Camera::capturePhotos()
+{
+    // Calculamos la distancia de movimiento en funcion de captFotos y capProf
+    float distance = (float)capProf / (float)capFotos;
+
+    // Iniciamos la captura de fotos
+    for (int i = 0; i < capFotos; i++)
+    {
+        // Movemos el motor
+        MyMotor.moveMotorDistance(distance, FORWARD);
+        // Esperamos el tiempo de captura
+        delay(capTime * 1000);
+        // Capturamos la foto
+        capturePhoto();
+    }
 }
 
 //Funcion setCamera
-void Camera::setCamera(int camType)
+void Camera::setCamera(int type)
 {
-    //Si el interfaz es por cable
-    if (camInterface == CABLE)
-    {
-    }
+    camType = type;
+    setCameraIR(camType);
 }
+//Funcion setInterface
+void Camera::setInterface(int interface)
+{
+    camInterface = interface;
+}   
 
 // Funcion para disparar la cámara por cable
 void Camera::captureByCable()
@@ -35,7 +70,7 @@ void Camera::captureByCable()
     digitalWrite(CAPTURE_CABLE_PIN, LOW);
 }
 
-// Funcion para disparar la cámara por infrarrojos
+// Fucnion para disparar la cámara por infrarrojos
 void Camera::captureByIR()
 {
 	// Disparamos la cámara
@@ -47,28 +82,28 @@ void Camera::setCameraIR(int camType)
     //Si ya estaba definida la cámara la eliminamos
     if (irInterface != NULL)
     {
-        delete camera;
+        delete irInterface;
     }
     //Definimos la cámara
     switch (camType)
     {
         case CANON:
-            camera = new Canon(CAMERA_IR_PIN);
+            irInterface = new Canon(CAMERA_IR_PIN);
             break;
         case NIKON:
-            camera = new Nikon(CAMERA_IR_PIN);
+            irInterface = new Nikon(CAMERA_IR_PIN);
             break;
         case OLYMPUS:
-            camera = new Olympus(CAMERA_IR_PIN);
+            irInterface = new Olympus(CAMERA_IR_PIN);
             break;
         case PENTAX:
-            camera = new Pentax(CAMERA_IR_PIN);
+            irInterface = new Pentax(CAMERA_IR_PIN);
             break;
         case SONY:
-            camera = new Sony(CAMERA_IR_PIN);
+            irInterface = new Sony(CAMERA_IR_PIN);
             break;
         case MINOLTA:
-            camera = new Minolta(CAMERA_IR_PIN);
+            irInterface = new Minolta(CAMERA_IR_PIN);
             break;
     }
 }

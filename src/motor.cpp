@@ -1,12 +1,7 @@
-//Control del movimiento del motor paso a paso
-#include "movement.h"
+#include "motor.h"
 #include <Arduino.h>
 
-//Definimos las variables globales
-float movDistances[3];
-float movDistance;
-
-void initMotor()
+void Motor::initMotor()
 {
     // Configuración de los pines de control del motor
     pinMode(STEP_PIN, OUTPUT);
@@ -18,8 +13,14 @@ void initMotor()
     movDistances[2] = 0.1;
 }
 
+//Funcion para poner la distancia de movimiento en funcion del indice
+void Motor::setMovDistance(int indice)
+{
+    movDistance = movDistances[indice];
+}
+
 // Función para mover el motor un número de pasos en una dirección
-void moveMotorSteps(int steps, int dir)
+void Motor::moveMotorSteps(int steps, int dir)
 {
     // Configuración de la dirección del motor
     digitalWrite(DIR_PIN, dir);
@@ -34,8 +35,8 @@ void moveMotorSteps(int steps, int dir)
     }
 }
 
-//Funcion para mover el motor una distancia en milímetros
-void moveMotorDistance(float distance, int dir)
+// Funcion para mover el motor una distancia en milímetros
+void Motor::moveMotorDistance(float distance, int dir)
 {
     // Calculo de los pasos necesarios para mover la distancia deseada
     int steps = distance * STEPS_PER_REVOLUTION / MM_PER_REVOLUTION;
@@ -44,8 +45,8 @@ void moveMotorDistance(float distance, int dir)
     moveMotorSteps(steps, dir);
 }
 
-//Funcion para mover el motor hasta que se active el final de carrera
-void moveMotorUntilEndstop(int dir)
+// Funcion para mover el motor hasta que se active el final de carrera
+void Motor::moveMotorUntilEndstop(int dir)
 {
     // Movimiento del motor
     while (digitalRead(ENDSTOP_PIN) == HIGH)
@@ -53,6 +54,3 @@ void moveMotorUntilEndstop(int dir)
         moveMotorSteps(1, dir);
     }
 }
-
-
-
