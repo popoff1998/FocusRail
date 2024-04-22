@@ -246,7 +246,7 @@ void ui_event_ImgButton4(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Left");
+        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Backward");
         movBackward(e);
     }
 }
@@ -255,7 +255,7 @@ void ui_event_ImgButton5(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Rigth");
+        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Forward");
         movForward(e);
     }
 }

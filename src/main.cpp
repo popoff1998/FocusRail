@@ -96,11 +96,11 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
         data->point.x = touchX;
         data->point.y = touchY;
 
-        Serial.print("Data x ");
-        Serial.println(touchX);
+        //Serial.print("Data x ");
+        //Serial.println(touchX);
 
-        Serial.print("Data y ");
-        Serial.println(touchY);
+        //Serial.print("Data y ");
+        //Serial.println(touchY);
     }
 }
 

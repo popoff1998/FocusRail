@@ -1,9 +1,10 @@
+#define DEBUG 1
 // Definición de los pines de control del motor
 #define STEP_PIN 22
 #define DIR_PIN 27
 
 // Definición de los pines de control de los finales de carrera
-#define ENDSTOP_PIN 34
+#define ENDSTOP_PIN 4 //RED led
 
 // Pasos por vuelta del motor
 #define STEPS_PER_REVOLUTION 200
@@ -30,4 +31,8 @@ class Motor
         //Variables de la clase Motor
         float movDistances[3];
         float movDistance;
+    private:
+        int lastDir;
+        bool atEndStop;
+        bool endStopReached();
 };

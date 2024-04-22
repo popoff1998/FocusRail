@@ -15,7 +15,7 @@ void Camera::initCamera()
     pinMode(CAMERA_IR_PIN, OUTPUT);
     // Por defecto la cámara es Canon y la interfaz es por cable
     setCamera(CANON);
-    setInterface(CABLE);
+    setInterface(IR);
 }
 
 // Función para capturar una foto
@@ -46,6 +46,8 @@ void Camera::capturePhotos()
         delay(capTime * 1000);
         // Capturamos la foto
         capturePhoto();
+        // Esperamos un tiempo para que la cámara se prepare para la siguiente foto
+        delay(capTime * 1000);        
     }
 }
 
@@ -65,9 +67,9 @@ void Camera::setInterface(int interface)
 void Camera::captureByCable()
 {
     // Disparamos la cámara
-    digitalWrite(CAPTURE_CABLE_PIN, HIGH);
+    digitalWrite(CAMERA_CABLE_PIN, HIGH);
     delay(100);
-    digitalWrite(CAPTURE_CABLE_PIN, LOW);
+    digitalWrite(CAMERA_CABLE_PIN, LOW);
 }
 
 // Fucnion para disparar la cámara por infrarrojos

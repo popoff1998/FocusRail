@@ -1,4 +1,5 @@
 #include "motor.h"
+#include "ui.h"
 #include <Arduino.h>
 
 void Motor::initMotor()
@@ -11,6 +12,8 @@ void Motor::initMotor()
     movDistances[0] = 10;
     movDistances[1] = 1;
     movDistances[2] = 0.1;
+    atEndStop = false;
+    lastDir = FORWARD;
 }
 
 //Funcion para poner la distancia de movimiento en funcion del indice
@@ -22,8 +25,29 @@ void Motor::setMovDistance(int indice)
 // Función para mover el motor un número de pasos en una dirección
 void Motor::moveMotorSteps(int steps, int dir)
 {
+    #ifdef DEBUG
+    Serial.print("Moving motor ");
+    Serial.print(steps);
+    Serial.print(" steps in direction ");
+    Serial.println(dir);
+    //Imprimimos el estado del final de carrera
+    Serial.print("Endstop state: ");
+    Serial.println(digitalRead(ENDSTOP_PIN));
+    #endif
+    //Comprobamos que no hemos llegado al final de carrera
+    if (atEndStop && dir == lastDir)
+    {
+        Serial.println("Endstop reached, can't move");
+        return;
+    }
+    else
+    {
+        atEndStop = false;
+    }
+
     // Configuración de la dirección del motor
     digitalWrite(DIR_PIN, dir);
+    lastDir = dir;
 
     // Movimiento del motor
     for (int i = 0; i < abs(steps); i++)
@@ -32,6 +56,12 @@ void Motor::moveMotorSteps(int steps, int dir)
         delayMicroseconds(500);
         digitalWrite(STEP_PIN, LOW);
         delayMicroseconds(500);
+        if (endStopReached())
+        {
+            Serial.println("Endstop reached");
+            atEndStop = true;
+            return;
+        }
     }
 }
 
@@ -43,6 +73,8 @@ void Motor::moveMotorDistance(float distance, int dir)
 
     // Movimiento del motor
     moveMotorSteps(steps, dir);
+    // Escribimos stop en ui_movLabel
+    lv_label_set_text(ui_movLabel, "Stop");
 }
 
 // Funcion para mover el motor hasta que se active el final de carrera
@@ -53,4 +85,10 @@ void Motor::moveMotorUntilEndstop(int dir)
     {
         moveMotorSteps(1, dir);
     }
+}
+
+// Funcion para comprobar si se ha llegado al final de carrera
+bool Motor::endStopReached()
+{
+    return digitalRead(ENDSTOP_PIN) == HIGH;
 }

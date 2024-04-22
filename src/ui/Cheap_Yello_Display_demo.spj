@@ -7925,7 +7925,7 @@
                       {
                         "nid": 1694083703,
                         "strtype": "LABEL_PROPERTY/Value",
-                        "strval": "Move Left",
+                        "strval": "Move Backward",
                         "InheritedType": 10
                       }
                     ],
@@ -8344,7 +8344,7 @@
                       {
                         "nid": -1720860778,
                         "strtype": "LABEL_PROPERTY/Value",
-                        "strval": "Move Rigth",
+                        "strval": "Move Forward",
                         "InheritedType": 10
                       }
                     ],
