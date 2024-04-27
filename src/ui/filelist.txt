@@ -2,6 +2,8 @@ screens/ui_mainScreen.c
 screens/ui_confScreen.c
 screens/ui_movScreen.c
 screens/ui_captScreen.c
+screens/ui_updateScreen.c
+screens/ui_wifiScreen.c
 ui.c
 components/ui_comp_hook.c
 ui_helpers.c

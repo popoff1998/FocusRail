@@ -73,3 +73,8 @@ void startCapture(lv_event_t * e)
 	// Iniciamos la captura de fotos
 	MyCamera.capturePhotos();	
 }
+
+void doOtaUpdate(lv_event_t * e)
+{
+	// Your code here
+}

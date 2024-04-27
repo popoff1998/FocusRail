@@ -19,10 +19,15 @@
 #include <TFT_eSPI.h>
 #include "ui.h"
 #include <XPT2046_Touchscreen.h>
-// A library for interfacing with the touch screen
-//
-// Can be installed from the library manager (Search for "XPT2046")
-// https://github.com/PaulStoffregen/XPT2046_Touchscreen
+
+//Includes necesarios para las actualizaciones OTA
+#include <WiFi.h>
+#include "BasicOTA.hpp"
+
+//Variables para el ssid y password de la red
+#define SSID "ORDENA"
+#define PASSWORD "28duque28"
+
 // ----------------------------
 // Touch Screen pins
 // ----------------------------
@@ -106,11 +111,31 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 
 Camera MyCamera;
 Motor MyMotor;
+BasicOTA OTA;
+
 
 void setup()
 {
     Serial.begin(115200); /* prepare for possible serial debug */
+    // Código de inicialización para el wifi
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(SSID, PASSWORD);
+    while (WiFi.waitForConnectResult() != WL_CONNECTED)
+    {
+        Serial.println("Connection Failed! Rebooting...");
+        delay(5000);
+        ESP.restart();
+    }
 
+    // Inicialización del servicio OTA
+    OTA.begin();
+
+    //Mostramos los valores de la ip
+    Serial.println("Ready");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+
+    //Inicialización de la pantalla
     String LVGL_Arduino = "Hello Arduino! ";
     LVGL_Arduino += String('V') + lv_version_major() + "." + lv_version_minor() + "." + lv_version_patch();
 
@@ -155,18 +180,13 @@ void setup()
     indev_drv.read_cb = my_touchpad_read;
     lv_indev_drv_register(&indev_drv);
 
-    /* Uncomment to create simple label */
-    // lv_obj_t *label = lv_label_create( lv_scr_act() );
-    // lv_label_set_text( label, "Hello Ardino and LVGL!");
-    // lv_obj_align( label, LV_ALIGN_CENTER, 0, 0 );
-
     ui_init();
-
     Serial.println("Setup done");
 }
 
 void loop()
 {
-    lv_timer_handler(); /* let the GUI do its work */
+    OTA.handle();
+    lv_timer_handler();
     delay(5);
 }

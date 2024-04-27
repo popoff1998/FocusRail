@@ -34,17 +34,22 @@ lv_obj_t * ui_ImgButton1;
 lv_obj_t * ui_Label1;
 void ui_event_camType(lv_event_t * e);
 lv_obj_t * ui_camType;
-void ui_event_interfaceType(lv_event_t * e);
-lv_obj_t * ui_interfaceType;
-lv_obj_t * ui_Label2;
 lv_obj_t * ui_Label6;
 lv_obj_t * ui_defFotosLabel;
 lv_obj_t * ui_Label8;
 lv_obj_t * ui_defProfLabel;
-void ui_event_Slider2(lv_event_t * e);
-lv_obj_t * ui_Slider2;
-void ui_event_Slider3(lv_event_t * e);
-lv_obj_t * ui_Slider3;
+void ui_event_profDefSlider(lv_event_t * e);
+lv_obj_t * ui_profDefSlider;
+void ui_event_fotosDefSlider(lv_event_t * e);
+lv_obj_t * ui_fotosDefSlider;
+lv_obj_t * ui_endStopCheck;
+lv_obj_t * ui_autoLigthCheck;
+void ui_event_updateButton(lv_event_t * e);
+lv_obj_t * ui_updateButton;
+lv_obj_t * ui_Label2;
+lv_obj_t * ui_versionLabel;
+lv_obj_t * ui_Button2;
+lv_obj_t * ui_Label15;
 
 
 // SCREEN: ui_movScreen
@@ -85,6 +90,19 @@ lv_obj_t * ui_capTimeSlider;
 void ui_event_startButton(lv_event_t * e);
 lv_obj_t * ui_startButton;
 lv_obj_t * ui_Label13;
+
+
+// SCREEN: ui_updateScreen
+void ui_updateScreen_screen_init(void);
+void ui_event_updateScreen(lv_event_t * e);
+lv_obj_t * ui_updateScreen;
+lv_obj_t * ui_Label14;
+lv_obj_t * ui_updateBar;
+
+
+// SCREEN: ui_wifiScreen
+void ui_wifiScreen_screen_init(void);
+lv_obj_t * ui_wifiScreen;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -201,15 +219,7 @@ void ui_event_camType(lv_event_t * e)
         setCamType(e);
     }
 }
-void ui_event_interfaceType(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_VALUE_CHANGED) {
-        setCamInterface(e);
-    }
-}
-void ui_event_Slider2(lv_event_t * e)
+void ui_event_profDefSlider(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -217,12 +227,23 @@ void ui_event_Slider2(lv_event_t * e)
         _ui_slider_set_text_value(ui_defProfLabel, target, "", "");
     }
 }
-void ui_event_Slider3(lv_event_t * e)
+void ui_event_fotosDefSlider(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_VALUE_CHANGED) {
         _ui_slider_set_text_value(ui_defFotosLabel, target, "", "");
+    }
+}
+void ui_event_updateButton(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_updateScreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_updateScreen_screen_init);
+    }
+    if(event_code == LV_EVENT_CLICKED) {
+        doOtaUpdate(e);
     }
 }
 void ui_event_ImgButton2(lv_event_t * e)
@@ -310,6 +331,14 @@ void ui_event_startButton(lv_event_t * e)
         startCapture(e);
     }
 }
+void ui_event_updateScreen(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_SCREEN_LOADED) {
+        _ui_bar_set_property(ui_updateBar, _UI_BAR_PROPERTY_VALUE, 0);
+    }
+}
 
 ///////////////////// SCREENS ////////////////////
 
@@ -323,6 +352,8 @@ void ui_init(void)
     ui_confScreen_screen_init();
     ui_movScreen_screen_init();
     ui_captScreen_screen_init();
+    ui_updateScreen_screen_init();
+    ui_wifiScreen_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_mainScreen);
 }
