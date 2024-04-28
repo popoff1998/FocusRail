@@ -46,3 +46,7 @@ def setCapFotos(event_struct):
 def setCapTime(event_struct):
     return
 
+
+def doOtaUpdate(event_struct):
+    return
+

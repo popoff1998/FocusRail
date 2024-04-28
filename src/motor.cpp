@@ -25,6 +25,19 @@ void Motor::setMovDistance(int indice)
 // Función para mover el motor un número de pasos en una dirección
 void Motor::moveMotorSteps(int steps, int dir)
 {
+    //Ponemos la etiqueta de movimiento en funcion del movimiento
+    if (steps == 0)
+    {
+        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Stop");
+    }
+    else if (dir == FORWARD)
+    {
+        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Forward");
+    }
+    else
+    {
+        _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Backward");
+    }
     #ifdef DEBUG
     Serial.print("Moving motor ");
     Serial.print(steps);
@@ -74,7 +87,7 @@ void Motor::moveMotorDistance(float distance, int dir)
     // Movimiento del motor
     moveMotorSteps(steps, dir);
     // Escribimos stop en ui_movLabel
-    lv_label_set_text(ui_movLabel, "Stop");
+    _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Stop");
 }
 
 // Funcion para mover el motor hasta que se active el final de carrera

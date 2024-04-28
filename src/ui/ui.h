@@ -38,17 +38,22 @@ extern lv_obj_t * ui_ImgButton1;
 extern lv_obj_t * ui_Label1;
 void ui_event_camType(lv_event_t * e);
 extern lv_obj_t * ui_camType;
-void ui_event_interfaceType(lv_event_t * e);
-extern lv_obj_t * ui_interfaceType;
-extern lv_obj_t * ui_Label2;
 extern lv_obj_t * ui_Label6;
 extern lv_obj_t * ui_defFotosLabel;
 extern lv_obj_t * ui_Label8;
 extern lv_obj_t * ui_defProfLabel;
-void ui_event_Slider2(lv_event_t * e);
-extern lv_obj_t * ui_Slider2;
-void ui_event_Slider3(lv_event_t * e);
-extern lv_obj_t * ui_Slider3;
+void ui_event_profDefSlider(lv_event_t * e);
+extern lv_obj_t * ui_profDefSlider;
+void ui_event_fotosDefSlider(lv_event_t * e);
+extern lv_obj_t * ui_fotosDefSlider;
+extern lv_obj_t * ui_endStopCheck;
+extern lv_obj_t * ui_autoLigthCheck;
+void ui_event_updateButton(lv_event_t * e);
+extern lv_obj_t * ui_updateButton;
+extern lv_obj_t * ui_Label2;
+extern lv_obj_t * ui_versionLabel;
+extern lv_obj_t * ui_Button2;
+extern lv_obj_t * ui_Label15;
 // SCREEN: ui_movScreen
 void ui_movScreen_screen_init(void);
 extern lv_obj_t * ui_movScreen;
@@ -85,6 +90,15 @@ extern lv_obj_t * ui_capTimeSlider;
 void ui_event_startButton(lv_event_t * e);
 extern lv_obj_t * ui_startButton;
 extern lv_obj_t * ui_Label13;
+// SCREEN: ui_updateScreen
+void ui_updateScreen_screen_init(void);
+void ui_event_updateScreen(lv_event_t * e);
+extern lv_obj_t * ui_updateScreen;
+extern lv_obj_t * ui_Label14;
+extern lv_obj_t * ui_updateBar;
+// SCREEN: ui_wifiScreen
+void ui_wifiScreen_screen_init(void);
+extern lv_obj_t * ui_wifiScreen;
 extern lv_obj_t * ui____initial_actions0;
 
 

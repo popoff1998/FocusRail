@@ -24,8 +24,8 @@ void ui_confScreen_screen_init(void)
     ui_Label1 = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label1, -118);
-    lv_obj_set_y(ui_Label1, -73);
+    lv_obj_set_x(ui_Label1, -79);
+    lv_obj_set_y(ui_Label1, -92);
     lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label1, "Camara");
 
@@ -33,90 +33,132 @@ void ui_confScreen_screen_init(void)
     lv_dropdown_set_options(ui_camType, "Canon\nNikon\nOlympus\nPentax\nSony\nMinolta");
     lv_obj_set_width(ui_camType, 150);
     lv_obj_set_height(ui_camType, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_camType, 71);
-    lv_obj_set_y(ui_camType, -75);
+    lv_obj_set_x(ui_camType, 58);
+    lv_obj_set_y(ui_camType, -92);
     lv_obj_set_align(ui_camType, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_camType, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
 
 
 
-    ui_interfaceType = lv_dropdown_create(ui_confScreen);
-    lv_dropdown_set_options(ui_interfaceType, "Cable\nInfrarojos");
-    lv_obj_set_width(ui_interfaceType, 150);
-    lv_obj_set_height(ui_interfaceType, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_interfaceType, 74);
-    lv_obj_set_y(ui_interfaceType, -33);
-    lv_obj_set_align(ui_interfaceType, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_interfaceType, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-
-
-
-    ui_Label2 = lv_label_create(ui_confScreen);
-    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label2, -115);
-    lv_obj_set_y(ui_Label2, -33);
-    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label2, "Interfaz");
-
     ui_Label6 = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_Label6, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label6, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label6, -107);
-    lv_obj_set_y(ui_Label6, 7);
+    lv_obj_set_x(ui_Label6, -102);
+    lv_obj_set_y(ui_Label6, -51);
     lv_obj_set_align(ui_Label6, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label6, "Fotos def.");
 
     ui_defFotosLabel = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_defFotosLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_defFotosLabel, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_defFotosLabel, -33);
-    lv_obj_set_y(ui_defFotosLabel, 8);
+    lv_obj_set_x(ui_defFotosLabel, -38);
+    lv_obj_set_y(ui_defFotosLabel, -50);
     lv_obj_set_align(ui_defFotosLabel, LV_ALIGN_CENTER);
     lv_label_set_text(ui_defFotosLabel, "1");
 
     ui_Label8 = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label8, -108);
-    lv_obj_set_y(ui_Label8, 44);
+    lv_obj_set_x(ui_Label8, -103);
+    lv_obj_set_y(ui_Label8, -13);
     lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label8, "Prof. def.");
 
     ui_defProfLabel = lv_label_create(ui_confScreen);
     lv_obj_set_width(ui_defProfLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_defProfLabel, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_defProfLabel, -33);
-    lv_obj_set_y(ui_defProfLabel, 42);
+    lv_obj_set_x(ui_defProfLabel, -39);
+    lv_obj_set_y(ui_defProfLabel, -12);
     lv_obj_set_align(ui_defProfLabel, LV_ALIGN_CENTER);
     lv_label_set_text(ui_defProfLabel, "10");
 
-    ui_Slider2 = lv_slider_create(ui_confScreen);
-    lv_slider_set_range(ui_Slider2, 1, 30);
-    lv_slider_set_value(ui_Slider2, 10, LV_ANIM_OFF);
-    if(lv_slider_get_mode(ui_Slider2) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider2, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_Slider2, 150);
-    lv_obj_set_height(ui_Slider2, 10);
-    lv_obj_set_x(ui_Slider2, 70);
-    lv_obj_set_y(ui_Slider2, 43);
-    lv_obj_set_align(ui_Slider2, LV_ALIGN_CENTER);
+    ui_profDefSlider = lv_slider_create(ui_confScreen);
+    lv_slider_set_range(ui_profDefSlider, 1, 30);
+    lv_slider_set_value(ui_profDefSlider, 10, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_profDefSlider) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_profDefSlider, 0,
+                                                                                                  LV_ANIM_OFF);
+    lv_obj_set_width(ui_profDefSlider, 150);
+    lv_obj_set_height(ui_profDefSlider, 10);
+    lv_obj_set_x(ui_profDefSlider, 61);
+    lv_obj_set_y(ui_profDefSlider, -13);
+    lv_obj_set_align(ui_profDefSlider, LV_ALIGN_CENTER);
 
 
-    ui_Slider3 = lv_slider_create(ui_confScreen);
-    lv_slider_set_range(ui_Slider3, 1, 30);
-    lv_slider_set_value(ui_Slider3, 1, LV_ANIM_OFF);
-    if(lv_slider_get_mode(ui_Slider3) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider3, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_Slider3, 150);
-    lv_obj_set_height(ui_Slider3, 10);
-    lv_obj_set_x(ui_Slider3, 72);
-    lv_obj_set_y(ui_Slider3, 7);
-    lv_obj_set_align(ui_Slider3, LV_ALIGN_CENTER);
+    ui_fotosDefSlider = lv_slider_create(ui_confScreen);
+    lv_slider_set_range(ui_fotosDefSlider, 1, 30);
+    lv_slider_set_value(ui_fotosDefSlider, 1, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_fotosDefSlider) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_fotosDefSlider, 0,
+                                                                                                   LV_ANIM_OFF);
+    lv_obj_set_width(ui_fotosDefSlider, 150);
+    lv_obj_set_height(ui_fotosDefSlider, 10);
+    lv_obj_set_x(ui_fotosDefSlider, 64);
+    lv_obj_set_y(ui_fotosDefSlider, -49);
+    lv_obj_set_align(ui_fotosDefSlider, LV_ALIGN_CENTER);
 
+
+    ui_endStopCheck = lv_checkbox_create(ui_confScreen);
+    lv_checkbox_set_text(ui_endStopCheck, "Final Carrera");
+    lv_obj_set_width(ui_endStopCheck, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_endStopCheck, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_endStopCheck, -78);
+    lv_obj_set_y(ui_endStopCheck, 24);
+    lv_obj_set_align(ui_endStopCheck, LV_ALIGN_CENTER);
+    lv_obj_add_state(ui_endStopCheck, LV_STATE_CHECKED);       /// States
+    lv_obj_add_flag(ui_endStopCheck, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+
+    ui_autoLigthCheck = lv_checkbox_create(ui_confScreen);
+    lv_checkbox_set_text(ui_autoLigthCheck, "Auto Ligth");
+    lv_obj_set_width(ui_autoLigthCheck, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_autoLigthCheck, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_autoLigthCheck, 65);
+    lv_obj_set_y(ui_autoLigthCheck, 23);
+    lv_obj_set_align(ui_autoLigthCheck, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_autoLigthCheck, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+
+    ui_updateButton = lv_btn_create(ui_confScreen);
+    lv_obj_set_width(ui_updateButton, 72);
+    lv_obj_set_height(ui_updateButton, 41);
+    lv_obj_set_x(ui_updateButton, -103);
+    lv_obj_set_y(ui_updateButton, 82);
+    lv_obj_set_align(ui_updateButton, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_updateButton, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_updateButton, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label2 = lv_label_create(ui_updateButton);
+    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label2, -1);
+    lv_obj_set_y(ui_Label2, 1);
+    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label2, "Update");
+
+    ui_versionLabel = lv_label_create(ui_confScreen);
+    lv_obj_set_width(ui_versionLabel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_versionLabel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_versionLabel, 59);
+    lv_obj_set_y(ui_versionLabel, 81);
+    lv_obj_set_align(ui_versionLabel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_versionLabel, "v1.0.0");
+
+    ui_Button2 = lv_btn_create(ui_confScreen);
+    lv_obj_set_width(ui_Button2, 77);
+    lv_obj_set_height(ui_Button2, 41);
+    lv_obj_set_x(ui_Button2, -14);
+    lv_obj_set_y(ui_Button2, 81);
+    lv_obj_set_align(ui_Button2, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_Button2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label15 = lv_label_create(ui_Button2);
+    lv_obj_set_width(ui_Label15, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label15, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label15, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label15, "Wifi");
 
     lv_obj_add_event_cb(ui_ImgButton1, ui_event_ImgButton1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_camType, ui_event_camType, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_interfaceType, ui_event_interfaceType, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Slider3, ui_event_Slider3, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_profDefSlider, ui_event_profDefSlider, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_fotosDefSlider, ui_event_fotosDefSlider, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_updateButton, ui_event_updateButton, LV_EVENT_ALL, NULL);
 
 }
