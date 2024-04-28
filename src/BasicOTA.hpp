@@ -18,4 +18,5 @@ public:
     BasicOTA();
     void begin();
     void handle();
+    void setHostname(String hostname);
 };

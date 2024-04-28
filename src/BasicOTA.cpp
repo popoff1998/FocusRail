@@ -47,3 +47,8 @@ void BasicOTA::handle()
 {
     ArduinoOTA.handle();
 }
+
+void BasicOTA::setHostname(String hostname)
+{
+    ArduinoOTA.setHostname(hostname.c_str());
+}

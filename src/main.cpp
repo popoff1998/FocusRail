@@ -23,10 +23,14 @@
 //Includes necesarios para las actualizaciones OTA
 #include <WiFi.h>
 #include "BasicOTA.hpp"
+//Incluimos mDNS para ESP32
+#include <ESPmDNS.h>
+
 
 //Variables para el ssid y password de la red
-#define SSID "ORDENA"
-#define PASSWORD "28duque28"
+const char* SSID = "ORDENA";
+const char* PASSWORD = "28duque28";
+const char* HOSTNAME = "focusrail";
 
 // ----------------------------
 // Touch Screen pins
@@ -122,12 +126,25 @@ void setup()
     WiFi.begin(SSID, PASSWORD);
     while (WiFi.waitForConnectResult() != WL_CONNECTED)
     {
-        Serial.println("Connection Failed! Rebooting...");
+        Serial.println("Connection Failed!");
         delay(5000);
-        ESP.restart();
+        //ESP.restart();
     }
+    Serial.println("Connected to wifi " + String(SSID));
+
+    // Initialize mDNS
+    if (!MDNS.begin(HOSTNAME))
+    { // Set the hostname to "esp32.local"
+        Serial.println("Error setting up MDNS responder!");
+        while (1)
+        {
+            delay(1000);
+        }
+    }
+    Serial.println("mDNS responder started");
 
     // Inicialización del servicio OTA
+    OTA.setHostname(HOSTNAME);
     OTA.begin();
 
     //Mostramos los valores de la ip
