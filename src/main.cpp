@@ -1,16 +1,10 @@
-//* Template for using Squareline Studio ui output with
-//*   Cheap Yellow Display ("CYD") (aka ESP32-2432S028R)
-//* (for example https://www.aliexpress.us/item/3256805998556027.html)
-//*
-//* 
-
-
-
-
+#define MAIN 1
 #include <Arduino.h>
 #include <SPI.h>
-#include "motor.h "
-#include "camera.h"
+#include "motor.hpp"
+#include "camera.hpp"
+#include "config.hpp"
+#include "log.hpp"
 
 /*Using LVGL with Arduino requires some extra steps:
  *Be sure to read the docs here: https://docs.lvgl.io/master/get-started/platforms/arduino.html  */
@@ -25,7 +19,6 @@
 #include "BasicOTA.hpp"
 //Incluimos mDNS para ESP32
 #include <ESPmDNS.h>
-
 
 //Variables para el ssid y password de la red
 const char* SSID = "ORDENA";
@@ -113,65 +106,85 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
     }
 }
 
+Config MyConfig;
 Camera MyCamera;
 Motor MyMotor;
 BasicOTA OTA;
-
+Log MyLog;
+// Para el servidor web
+AsyncWebServer server(80);
 
 void setup()
 {
+    #ifdef DEBUG
     Serial.begin(115200); /* prepare for possible serial debug */
+    #endif
     // Código de inicialización para el wifi
     WiFi.mode(WIFI_STA);
     WiFi.begin(SSID, PASSWORD);
     while (WiFi.waitForConnectResult() != WL_CONNECTED)
     {
+        #ifdef DEBUG
         Serial.println("Connection Failed!");
+        #endif
         delay(5000);
         //ESP.restart();
     }
+    #ifdef DEBUG
     Serial.println("Connected to wifi " + String(SSID));
-
+    #endif
     // Initialize mDNS
     if (!MDNS.begin(HOSTNAME))
     { // Set the hostname to "esp32.local"
+        #ifdef DEBUG
         Serial.println("Error setting up MDNS responder!");
+        #endif
         while (1)
         {
             delay(1000);
         }
     }
+    #ifdef DEBUG
     Serial.println("mDNS responder started");
-
+    #endif
     // Inicialización del servicio OTA
     OTA.setHostname(HOSTNAME);
     OTA.begin();
+    WebSerial.begin(&server);
+    server.begin();
+    WebSerial.println("Hello from ESP32");
 
     //Mostramos los valores de la ip
+    #ifdef DEBUG
     Serial.println("Ready");
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
-
+    #endif
+    //Escribimos en webserial
+    WebSerial.println("Ready");
+    WebSerial.print("IP address: ");
+    WebSerial.println(WiFi.localIP());
     //Inicialización de la pantalla
     String LVGL_Arduino = "Hello Arduino! ";
     LVGL_Arduino += String('V') + lv_version_major() + "." + lv_version_minor() + "." + lv_version_patch();
-
+    #ifdef DEBUG
     Serial.println(LVGL_Arduino);
-        Serial.println("I am LVGL_Arduino");
-
-
-        //Inicialización del motor
-        MyMotor.initMotor();
-        //Inicialización de la camara
-        MyCamera.initCamera();
-
-        lv_init();
+    Serial.println("I am LVGL_Arduino");
+    #endif
+    //Inicialización de la configuración
+    MyConfig.initConfiguration();
+    //Inicialización del motor
+    MyMotor.initMotor();
+    //Inicialización de la camara
+    MyCamera.initCamera(MyConfig);
+    //Inicialización de la interfaz
+    lv_init();
 
     #if LV_USE_LOG != 0
         lv_log_register_print_cb(my_print); /* register print function for debugging */
     #endif
 
-        mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS); /* Start second SPI bus for touchscreen */
+    mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS); /* Start second SPI bus for touchscreen */
     ts.begin(mySpi);                                                  /* Touchscreen init */
     ts.setRotation(1);                                                /* Landscape orientation */
 
@@ -198,7 +211,6 @@ void setup()
     lv_indev_drv_register(&indev_drv);
 
     ui_init();
-    Serial.println("Setup done");
 }
 
 void loop()

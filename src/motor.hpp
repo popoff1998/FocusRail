@@ -1,4 +1,3 @@
-#define DEBUG 1
 // Definición de los pines de control del motor
 #define STEP_PIN 22
 #define DIR_PIN 27
@@ -12,11 +11,13 @@
 // Definimos las direcciones de los motores
 #pragma once
 
-#define FORWARD 0
-#define BACKWARD 1
+#define FORWARD false
+#define BACKWARD true
 
 // Definimos los milimetros por vuelta del motor
 #define MM_PER_REVOLUTION 2
+//definimos los pasos de vuelta atras en caso de endstoop
+#define BACKWARD_STEPS 400
 
 class Motor
 {
@@ -24,15 +25,22 @@ class Motor
         //Metodos de la clase Motor
         Motor() {};
         void initMotor();
-        void moveMotorSteps(int, int);
-        void moveMotorDistance(float, int);
-        void moveMotorUntilEndstop(int);
+        void moveMotorSteps(int, bool);
+        void moveMotorDistance(float, bool);
+        void moveMotorUntilEndstop(bool);
         void setMovDistance(int);
         //Variables de la clase Motor
-        float movDistances[3];
+        float movDistances[5];
         float movDistance;
     private:
-        int lastDir;
-        bool atEndStop;
+        bool lastDir;
+        float lastDistance;
+        bool currentDir;
+        bool forwardEndStop;
+        bool backwardEndStop;
         bool endStopReached();
+        bool canMove();
+        void updateMoveLabels(int,int);
+        void moveMotor();
+        void setDir(bool);
 };

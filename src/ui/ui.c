@@ -261,6 +261,9 @@ void ui_event_dropDownDistMov(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED) {
         movDistChange(e);
     }
+    if(event_code == LV_EVENT_SCREEN_LOADED) {
+        _ui_dropdown_set_property(ui_dropDownDistMov, _UI_DROPDOWN_PROPERTY_SELECTED, 2);
+    }
 }
 void ui_event_ImgButton4(lv_event_t * e)
 {

@@ -1,21 +1,24 @@
 //Control de la camara
-#include "camera.h"
+#include "camera.hpp"
 #include "MD_multiCameraIrControl.h"
-#include "configuration.h"
-#include "motor.h"
+#include "config.hpp"
+#include "motor.hpp"
 #include <Arduino.h>
 
 extern Motor MyMotor;
 
 //Función para inicializar la cámara
-void Camera::initCamera()
+void Camera::initCamera(Config config)
 {
     // Configuración de los pines de control de la cámara
     pinMode(CAMERA_CABLE_PIN, OUTPUT);
     pinMode(CAMERA_IR_PIN, OUTPUT);
-    // Por defecto la cámara es Canon y la interfaz es por cable
-    setCamera(CANON);
-    setInterface(IR);
+    //Copiamos los valores de configuración
+    capProf = config.capProf;
+    capFotos = config.capFotos;
+    capTime = config.capTime;
+    camType = config.camType;
+    camInterface = config.camInterface;
 }
 
 // Función para capturar una foto

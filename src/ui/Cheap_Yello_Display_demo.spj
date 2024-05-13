@@ -6301,7 +6301,7 @@
               {
                 "disabled": false,
                 "nid": -610040719,
-                "strtype": "BUTTON/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "CLICKED",
                 "childs": [
                   {
@@ -6324,7 +6324,7 @@
                   },
                   {
                     "nid": -1537273430,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CHANGE SCREEN",
                     "childs": [
                       {
@@ -6377,7 +6377,7 @@
               {
                 "disabled": false,
                 "nid": -1947974894,
-                "strtype": "BUTTON/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "CLICKED",
                 "childs": [
                   {
@@ -6400,7 +6400,7 @@
                   },
                   {
                     "nid": 1812945384,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "CALL FUNCTION",
                     "childs": [
                       {
@@ -8450,19 +8450,19 @@
               {
                 "nid": 2039190160,
                 "strtype": "DROPDOWN/Options",
-                "strval": "1 cm\\n1 mm\\n0,1 mm",
+                "strval": "All\\n5 cm\\n1 cm\\n1 mm\\n0,1 mm\\n",
                 "InheritedType": 10
               },
               {
                 "nid": 1663257280,
                 "strtype": "DROPDOWN/List_align",
-                "strval": "BOTTOM",
+                "strval": "LEFT",
                 "InheritedType": 3
               },
               {
                 "nid": 2000926475,
                 "strtype": "DROPDOWN/Show_selected",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -8569,6 +8569,77 @@
                         "strtype": "CALL FUNCTION/Dont_export_function",
                         "strval": "False",
                         "InheritedType": 2
+                      }
+                    ],
+                    "InheritedType": 10
+                  }
+                ],
+                "InheritedType": 4
+              },
+              {
+                "disabled": false,
+                "nid": 664602372,
+                "strtype": "DROPDOWN/EventHandler",
+                "strval": "SCREEN_LOADED",
+                "childs": [
+                  {
+                    "nid": 1834710174,
+                    "strtype": "_custom/name",
+                    "strval": "Event18",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": 629420609,
+                    "strtype": "_custom/condition_C",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": -1575822199,
+                    "strtype": "_custom/condition_P",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": 308220992,
+                    "strtype": "_custom/action",
+                    "strval": "DROPDOWN_PROPERTY",
+                    "childs": [
+                      {
+                        "nid": -84420653,
+                        "strtype": "DROPDOWN_PROPERTY/Name",
+                        "strval": "DROPDOWN_PROPERTY",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": -129609324,
+                        "strtype": "DROPDOWN_PROPERTY/Call",
+                        "strval": "SetDropdownProperty(<{Target}>, '<{Property}>', <{Value}>)",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 199599540,
+                        "strtype": "DROPDOWN_PROPERTY/CallC",
+                        "strval": "_ui_dropdown_set_property(<{Target}>, _UI_DROPDOWN_PROPERTY_<{Property}>, <{Value}>);",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": -2099571394,
+                        "strtype": "DROPDOWN_PROPERTY/Target",
+                        "strval": "GUID29620423-712934S168913103",
+                        "InheritedType": 9
+                      },
+                      {
+                        "nid": -1261592218,
+                        "strtype": "DROPDOWN_PROPERTY/Property",
+                        "strval": "Selected",
+                        "InheritedType": 3
+                      },
+                      {
+                        "nid": -1363706487,
+                        "strtype": "DROPDOWN_PROPERTY/Value",
+                        "integer": 2,
+                        "InheritedType": 6
                       }
                     ],
                     "InheritedType": 10
@@ -15506,7 +15577,7 @@
           {
             "disabled": false,
             "nid": 1529809184,
-            "strtype": "SCREEN/EventHandler",
+            "strtype": "_event/EventHandler",
             "strval": "SCREEN_LOADED",
             "childs": [
               {
@@ -15529,7 +15600,7 @@
               },
               {
                 "nid": -269534176,
-                "strtype": "_custom/action",
+                "strtype": "_event/action",
                 "strval": "BAR_PROPERTY",
                 "childs": [
                   {
@@ -16396,7 +16467,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "E:\\TEMPORAL\\BORRAR\\src\\ui",
     "projectExportFolderPath": "E:\\TEMPORAL\\BORRAR\\src\\ui",
-    "backup_cnt": 174,
+    "backup_cnt": 177,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.11",
     "callfuncsexport": "CPP_FILE",

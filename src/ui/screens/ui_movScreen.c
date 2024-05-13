@@ -30,8 +30,8 @@ void ui_movScreen_screen_init(void)
     lv_label_set_text(ui_Label7, "Movimiento");
 
     ui_dropDownDistMov = lv_dropdown_create(ui_movScreen);
-    lv_dropdown_set_options(ui_dropDownDistMov, "1 cm\n1 mm\n0,1 mm");
-    lv_dropdown_set_selected_highlight(ui_dropDownDistMov, false);
+    lv_dropdown_set_dir(ui_dropDownDistMov, LV_DIR_LEFT);
+    lv_dropdown_set_options(ui_dropDownDistMov, "All\n5 cm\n1 cm\n1 mm\n0,1 mm\n");
     lv_obj_set_width(ui_dropDownDistMov, 83);
     lv_obj_set_height(ui_dropDownDistMov, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_dropDownDistMov, 92);
