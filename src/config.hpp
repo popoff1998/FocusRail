@@ -1,3 +1,4 @@
+#pragma once
 //Incluimos multicamera.h
 #include "MD_multiCameraIrControl.h"
 #include "Preferences.h"
@@ -34,7 +35,7 @@ class Config
     public:
        void initConfiguration(); //Inicializa la configuración de la aplicación
        void readConfiguration(); //Lee los valores del interface de la aplicación
-       void writeConfiguration(); //Escribe los valores del interface de la aplicación   
+       void writeConfiguration(); //Escribe los valores del interface de la aplicación
        //Variables de configuración
          int capProf; //Profundidad de campo
          int capFotos; //Número de fotos a capturar

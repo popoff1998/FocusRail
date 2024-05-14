@@ -1,10 +1,13 @@
 #define MAIN 1
 #include <Arduino.h>
 #include <SPI.h>
+/*
 #include "motor.hpp"
 #include "camera.hpp"
 #include "config.hpp"
 #include "log.hpp"
+*/
+#include "focusrail.hpp"
 
 /*Using LVGL with Arduino requires some extra steps:
  *Be sure to read the docs here: https://docs.lvgl.io/master/get-started/platforms/arduino.html  */
@@ -106,19 +109,21 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
     }
 }
 
+/* LO QUITO EN ARAS DEL NUEVO OBJETO  FocusRail
 Config MyConfig;
 Camera MyCamera;
 Motor MyMotor;
-BasicOTA OTA;
 Log MyLog;
+*/
+BasicOTA OTA;
+FocusRail Myfr; 
 // Para el servidor web
 AsyncWebServer server(80);
 
 void setup()
 {
-    #ifdef DEBUG
     Serial.begin(115200); /* prepare for possible serial debug */
-    #endif
+
     // Código de inicialización para el wifi
     WiFi.mode(WIFI_STA);
     WiFi.begin(SSID, PASSWORD);
@@ -171,13 +176,18 @@ void setup()
     Serial.println(LVGL_Arduino);
     Serial.println("I am LVGL_Arduino");
     #endif
-    //Inicialización de la configuración
+
+    Myfr.initFocusRail();
+	/* ESTO LO HAREMOS DENTRO DE LA CLASE FocusRail
+	//Inicialización de la configuración
     MyConfig.initConfiguration();
     //Inicialización del motor
     MyMotor.initMotor();
     //Inicialización de la camara
     MyCamera.initCamera(MyConfig);
-    //Inicialización de la interfaz
+    */
+
+	//Inicialización de la interfaz
     lv_init();
 
     #if LV_USE_LOG != 0

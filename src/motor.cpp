@@ -5,22 +5,22 @@
 #include "config.hpp"
 #include "log.hpp"
 
-void Motor::initMotor()
+void Motor::initMotor(Config config,Log log)
 {
-    // Configuración de los pines de control del motor
-    pinMode(STEP_PIN, OUTPUT);
-    pinMode(DIR_PIN, OUTPUT);
-    pinMode(ENDSTOP_PIN, INPUT_PULLUP);
-    movDistance = 10;
-    movDistances[0] = 9999;
-    movDistances[1] = 50;
-    movDistances[2] = 10;
-    movDistances[3] = 1;
-    movDistances[4] = 0.1;
-    forwardEndStop = false;
-    backwardEndStop = false;
-    currentDir = FORWARD;
-    lastDir = FORWARD;
+	// Configuración de los pines de control del motor
+	pinMode(STEP_PIN, OUTPUT);
+	pinMode(DIR_PIN, OUTPUT);
+	pinMode(ENDSTOP_PIN, INPUT_PULLUP);
+	movDistance = 10;
+	movDistances[0] = 9999;
+	movDistances[1] = 50;
+	movDistances[2] = 10;
+	movDistances[3] = 1;
+	movDistances[4] = 0.1;
+	forwardEndStop = false;
+	backwardEndStop = false;
+	currentDir = FORWARD;
+	lastDir = FORWARD;
 }
 
 //Funcion para poner la distancia de movimiento en funcion del indice
@@ -34,7 +34,7 @@ void Motor::updateMoveLabels(int steps,int dir)
 {
     if (steps == 0)
     {
-        MyLog.println("Update Label Stop");
+        log.println("Update Label Stop");
         _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Stop");
     }
     else if (dir == FORWARD)

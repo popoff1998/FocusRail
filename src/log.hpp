@@ -1,3 +1,6 @@
+#pragma once
+#include <string>
+#include <Arduino.h>
 #include "config.hpp"
 // Para webserial
 #include <AsyncTCP.h>
@@ -8,9 +11,9 @@ class Log
 {
 public:
     void initLog(Config);
-    void println(char *);
-    void print(char *);
+    void println(std::string);
+    void print(std::string);
 private:
-    int logType;    
+    int logType;
 };
 

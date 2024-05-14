@@ -2,6 +2,7 @@
 
 #include "MD_multiCameraIrControl.h"
 #include "config.hpp"
+#include "log.hpp"
 
 // Defines de los pines de control de la cámara
 #define CAMERA_CABLE_PIN 16
@@ -12,13 +13,13 @@ class Camera
     public:
         //Metodos de la clase Camera
         Camera() {};
-        void initCamera(Config);      
+        void initCamera(Config,Log);
         void setCamera(int);
 		void setInterface(int);
         void capturePhoto();
         void capturePhotos();
 		void setCameraIR(int);
-    private:    
+    private:
         cCamera* irInterface;
 		void captureByIR();
         void captureByCable();

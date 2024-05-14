@@ -8,7 +8,7 @@ void Log::initLog(Config config)
 }
 
 //Funcion para imprimir una linea en el log
-void Log::println(char *line)
+void Log::println(std::string line)
 {
     if(logType == SERIAL_LOG)
     {
@@ -21,7 +21,7 @@ void Log::println(char *line)
 }
 
 //Funcion para imprimir una linea en el log
-void Log::print(char *line)
+void Log::print(std::string line)
 {
     if(logType == SERIAL_LOG)
     {

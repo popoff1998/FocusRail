@@ -3,22 +3,25 @@
 #include "MD_multiCameraIrControl.h"
 #include "config.hpp"
 #include "motor.hpp"
+#include "log.hpp"
 #include <Arduino.h>
 
 extern Motor MyMotor;
 
 //Función para inicializar la cámara
-void Camera::initCamera(Config config)
+void Camera::initCamera(Config config, Log log)
 {
-    // Configuración de los pines de control de la cámara
-    pinMode(CAMERA_CABLE_PIN, OUTPUT);
-    pinMode(CAMERA_IR_PIN, OUTPUT);
-    //Copiamos los valores de configuración
-    capProf = config.capProf;
-    capFotos = config.capFotos;
-    capTime = config.capTime;
-    camType = config.camType;
-    camInterface = config.camInterface;
+	// Configuración de los pines de control de la cámara
+	pinMode(CAMERA_CABLE_PIN, OUTPUT);
+	pinMode(CAMERA_IR_PIN, OUTPUT);
+	//Copiamos los valores de configuración
+	capProf = config.capProf;
+	capFotos = config.capFotos;
+	capTime = config.capTime;
+	camType = config.camType;
+	camInterface = config.camInterface;
+	//Inicializamos la interfaz IR
+	setCameraIR(camType);
 }
 
 // Función para capturar una foto

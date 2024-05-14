@@ -1,3 +1,8 @@
+#pragma once
+
+#include "config.hpp"
+#include "log.hpp"
+
 // Definición de los pines de control del motor
 #define STEP_PIN 22
 #define DIR_PIN 27
@@ -7,9 +12,6 @@
 
 // Pasos por vuelta del motor
 #define STEPS_PER_REVOLUTION 200
-
-// Definimos las direcciones de los motores
-#pragma once
 
 #define FORWARD false
 #define BACKWARD true
@@ -24,7 +26,7 @@ class Motor
     public:
         //Metodos de la clase Motor
         Motor() {};
-        void initMotor();
+        void initMotor(Config,Log);
         void moveMotorSteps(int, bool);
         void moveMotorDistance(float, bool);
         void moveMotorUntilEndstop(bool);
@@ -38,6 +40,8 @@ class Motor
         bool currentDir;
         bool forwardEndStop;
         bool backwardEndStop;
+		Config config;
+		Log log;
         bool endStopReached();
         bool canMove();
         void updateMoveLabels(int,int);
