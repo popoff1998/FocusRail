@@ -6,72 +6,72 @@
 #include <Arduino.h>
 #include "ui.h"
 #include "stdio.h"
-#include "motor.h"
-#include "camera.h"
+#include "focusrail.hpp"
+//#include "motor.hpp"
+//#include "camera.hpp"
 
 //Variable Mycamera global
-extern Camera MyCamera;
-extern Motor MyMotor;
+extern FocusRail Myfr;
 
 void movDistChange(lv_event_t * e)
 {
 	//Leo el valor del dropDownMovDist
 	int indice = lv_dropdown_get_selected(lv_event_get_current_target(e));
 	//La almacenamos en la variable global movDistance
-	MyMotor.setMovDistance(indice);
+	Myfr.setMovDistance(indice);
 }
 
 void movBackward(lv_event_t * e)
 {
 	//Movemos el motor hacia atrás
-	MyMotor.moveMotorDistance(MyMotor.movDistance, BACKWARD);
+	Myfr.moveMotor(BACKWARD);
 }
 
 void movForward(lv_event_t * e)
 {
 	//Movemos el motor hacia adelante
-	MyMotor.moveMotorDistance(MyMotor.movDistance, FORWARD);
+	Myfr.moveMotor(FORWARD);
 }
 
 void setCamType(lv_event_t * e)
 {
 	//Ponemos camType en funcion del dropdown
 	int camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
-	MyCamera.setCamera(camType);
+	Myfr.setCamera(camType);
 }
 
 void setCamInterface(lv_event_t * e)
 {
 	// Ponemos camInterface en funcion del dropdown
 	int camInterface = lv_dropdown_get_selected(lv_event_get_current_target(e));
-	MyCamera.Camera::setInterface(camInterface);
+	Myfr.setCameraInterface(camInterface);
 }
 
 void setCapProf(lv_event_t * e)
 {
 	// Ponemos capProf en funcion del slider
 	int capProf = lv_slider_get_value(lv_event_get_current_target(e));
-	MyCamera.capProf = capProf;
+	Myfr.setCapProf(capProf);
 }
 
 void setCapFotos(lv_event_t * e)
 {
 	// Ponemos capFotos en funcion del slider
 	int capFotos = lv_slider_get_value(lv_event_get_current_target(e));
-	MyCamera.capFotos = capFotos;
+	Myfr.setCapFotos(capFotos);
 }
 
 void setCapTime(lv_event_t * e)
 {
 	// Ponemos capTime en funcion del slider
 	int capTime = lv_slider_get_value(lv_event_get_current_target(e));
-	MyCamera.capTime = capTime;
+	Myfr.setCapTime(capTime);
 }
 
 void startCapture(lv_event_t * e)
 {
 	// Iniciamos la captura de fotos
-	MyCamera.capturePhotos();	
+	Myfr.capturePhotos();	
 }
 
 void doOtaUpdate(lv_event_t * e)

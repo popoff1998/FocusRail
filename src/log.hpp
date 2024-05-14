@@ -11,8 +11,10 @@ class Log
 {
 public:
     void initLog(Config);
-    void println(std::string);
-    void print(std::string);
+    void println(const char*);
+    void print(const char*);
+    void println(int);
+    void print(int);
 private:
     int logType;
 };

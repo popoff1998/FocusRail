@@ -37,7 +37,7 @@ void Camera::capturePhoto()
         captureByIR();
     }
 }
-// Funcion para iniciar la captura de fotos
+/* Funcion para iniciar la captura de fotos
 void Camera::capturePhotos()
 {
     // Calculamos la distancia de movimiento en funcion de captFotos y capProf
@@ -56,7 +56,7 @@ void Camera::capturePhotos()
         delay(capTime * 1000);        
     }
 }
-
+*/
 //Funcion setCamera
 void Camera::setCamera(int type)
 {
@@ -114,4 +114,34 @@ void Camera::setCameraIR(int camType)
             irInterface = new Minolta(CAMERA_IR_PIN);
             break;
     }
+}
+
+void Camera::setCapProf(int prof)
+{
+    capProf = prof;
+}
+
+void Camera::setCapFotos(int fotos)
+{
+    capFotos = fotos;
+}
+
+void Camera::setCapTime(int time)
+{
+    capTime = time;
+}
+
+int Camera::getCapProf()
+{
+    return capProf;
+}
+
+int Camera::getCapFotos()
+{
+    return capFotos;
+}
+
+int Camera::getCapTime()
+{
+    return capTime;
 }

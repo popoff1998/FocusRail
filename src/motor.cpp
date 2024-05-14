@@ -39,12 +39,12 @@ void Motor::updateMoveLabels(int steps,int dir)
     }
     else if (dir == FORWARD)
     {
-        MyLog.println("Update Label Move Forward");
+        log.println("Update Label Move Forward");
         _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Forward");
     }
     else
     {
-        MyLog.println("Update Label Move Backward");
+        log.println("Update Label Move Backward");
         _ui_label_set_property(ui_movLabel, _UI_LABEL_PROPERTY_TEXT, "Move Backward");
     }
 }
@@ -68,39 +68,16 @@ void Motor::moveMotorSteps(int steps, bool dir)
 {
     currentDir = dir;
     //Ponemos la etiqueta de movimiento en funcion del movimiento
-            #ifdef DEBUG
-            if(logType == SERIAL_LOG)
-            {
-                Serial.print("Moving motor ");
-                Serial.print(steps);
-                Serial.print(" steps in direction ");
-                Serial.println(dir);
-                Serial.print("Endstop state: ");
-                Serial.println(digitalRead(ENDSTOP_PIN));
-            }
-            else if(logType == WEB_LOG)
-            {
-                WebSerial.print("Moving motor ");
-                WebSerial.print(steps);
-                WebSerial.print(" steps in direction ");
-                WebSerial.println(dir);
-                WebSerial.print("Endstop state: ");
-                WebSerial.println(digitalRead(ENDSTOP_PIN));
-            }
-            #endif
+    log.print("Moving motor ");
+    log.print(steps);
+    log.print(" steps in direction ");
+    log.println(dir);
+    log.print("Endstop state: ");
+    log.println(digitalRead(ENDSTOP_PIN));
     //Comprobamos que no hemos llegado al final de carrera
     if (!canMove())
     {
-            #ifdef DEBUG
-            if(logType == SERIAL_LOG)
-            {
-                Serial.println("Can't move");
-            }
-            else if(logType == WEB_LOG)
-            {
-                WebSerial.println("Can't move");
-            }
-            #endif
+        log.println("Can't move");
         return;
     }
     // Configuración de la dirección del motor
@@ -112,18 +89,9 @@ void Motor::moveMotorSteps(int steps, bool dir)
         if (!canMove())
         {
             //Cambiamos de direccion y movemos el motor 5 pasos
-           setDir(!currentDir);
-           #ifdef DEBUG
-            if(logType == SERIAL_LOG)
-            {
-                Serial.println("Endstop reached, moving backwards");
-            }
-            else if(logType == WEB_LOG)
-            {
-                WebSerial.println("Endstop reached, moving backwards");
-            }
-            #endif
-           for (int j = 0; j < BACKWARD_STEPS; j++)
+            setDir(!currentDir);
+            log.println("Endstop reached, moving backwards");
+            for (int j = 0; j < BACKWARD_STEPS; j++)
             {
                 moveMotor();
             }
@@ -137,16 +105,7 @@ void Motor::moveMotorSteps(int steps, bool dir)
     {
         //Cambiamos de direccion y movemos el motor 5 pasos
         setDir(!currentDir);
-        #ifdef DEBUG
-        if(logType == SERIAL_LOG)
-        {
-            Serial.println("Endstop reached after last moveMotor, moving backwards");
-        }
-        else if(logType == WEB_LOG)
-        {
-            WebSerial.println("Endstop reached after last moveMotor, moving backwards");
-        }
-        #endif
+        log.println("Endstop reached after last moveMotor, moving backwards");
         for (int j = 0; j < BACKWARD_STEPS; j++)
         {
             moveMotor();

@@ -17,8 +17,14 @@ class Camera
         void setCamera(int);
 		void setInterface(int);
         void capturePhoto();
-        void capturePhotos();
+        //void capturePhotos();
 		void setCameraIR(int);
+        void setCapProf(int);
+        void setCapFotos(int);
+        void setCapTime(int);
+        int getCapProf();
+        int getCapFotos();
+        int getCapTime();
     private:
         cCamera* irInterface;
 		void captureByIR();
