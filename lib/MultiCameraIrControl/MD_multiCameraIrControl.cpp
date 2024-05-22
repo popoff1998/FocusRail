@@ -249,9 +249,9 @@ void Canon::shutterNow(void)
  for(uint8_t i = 0; i < 16; i++) 
  { 
    digitalWrite(_pin, HIGH);
-   delayMicroseconds(11);
+   delayMicroseconds(canon_time);
    digitalWrite(_pin, LOW);
-   delayMicroseconds(11);
+   delayMicroseconds(canon_time);
  } 
 
  delayMicroseconds(7330); 
@@ -259,9 +259,9 @@ void Canon::shutterNow(void)
  for(uint8_t i = 0; i < 16; i++) 
  { 
    digitalWrite(_pin, HIGH);
-   delayMicroseconds(11);
+   delayMicroseconds(canon_time);
    digitalWrite(_pin, LOW);
-   delayMicroseconds(11);
+   delayMicroseconds(canon_time);
  }
 }
 
@@ -270,9 +270,9 @@ void Canon::shutterDelayed(void)
   for (uint8_t i = 0; i < 16; i++) 
   { 
     digitalWrite(_pin, HIGH);
-    delayMicroseconds(11);
+    delayMicroseconds(canon_time);
     digitalWrite(_pin, LOW);
-    delayMicroseconds(11);
+    delayMicroseconds(canon_time);
   } 
 
   delayMicroseconds(5360); 
@@ -280,9 +280,9 @@ void Canon::shutterDelayed(void)
   for (uint8_t i = 0; i < 16; i++) 
   { 
     digitalWrite(_pin, HIGH);
-    delayMicroseconds(11);
+    delayMicroseconds(canon_time);
     digitalWrite(_pin, LOW);
-    delayMicroseconds(11);
+    delayMicroseconds(canon_time);
   }
 }
 
