@@ -3,6 +3,8 @@
 //Inicializa la configuración de la aplicación
 void Config::initConfiguration()
 {
+    //Inicializamos variables
+    logType = WEB_LOG;
     Preferences preferences;
     //Inicializamos las preferencias
     preferences.begin("focusrail", false);

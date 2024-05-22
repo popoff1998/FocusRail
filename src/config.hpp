@@ -42,7 +42,7 @@ class Config
          int capTime; //Tiempo de captura
          int camType; //Tipo de cámara
          int camInterface; //Interfaz de la cámara
-         int logType = WEB_LOG;
+         int logType;
        private:
          Preferences preferences; // Objeto de preferencias
 };

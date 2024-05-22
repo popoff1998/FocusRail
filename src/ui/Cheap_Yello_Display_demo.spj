@@ -273,7 +273,7 @@
               {
                 "nid": -283077536,
                 "strtype": "LABEL/Text",
-                "strval": "Focus Rail V1.0",
+                "strval": "Focus Rail V1.1",
                 "InheritedType": 10
               },
               {
@@ -8579,7 +8579,7 @@
               {
                 "disabled": false,
                 "nid": 664602372,
-                "strtype": "DROPDOWN/EventHandler",
+                "strtype": "_event/EventHandler",
                 "strval": "SCREEN_LOADED",
                 "childs": [
                   {
@@ -8602,7 +8602,7 @@
                   },
                   {
                     "nid": 308220992,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "DROPDOWN_PROPERTY",
                     "childs": [
                       {

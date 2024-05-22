@@ -1,12 +1,6 @@
 #define MAIN 1
 #include <Arduino.h>
 #include <SPI.h>
-/*
-#include "motor.hpp"
-#include "camera.hpp"
-#include "config.hpp"
-#include "log.hpp"
-*/
 #include "focusrail.hpp"
 
 /*Using LVGL with Arduino requires some extra steps:
@@ -22,6 +16,10 @@
 #include "BasicOTA.hpp"
 //Incluimos mDNS para ESP32
 #include <ESPmDNS.h>
+//Para webserial
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <WebSerial.h>
 
 //Variables para el ssid y password de la red
 const char* SSID = "ORDENA";
@@ -100,21 +98,9 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
         /*Set the coordinates*/
         data->point.x = touchX;
         data->point.y = touchY;
-
-        //Serial.print("Data x ");
-        //Serial.println(touchX);
-
-        //Serial.print("Data y ");
-        //Serial.println(touchY);
     }
 }
 
-/* LO QUITO EN ARAS DEL NUEVO OBJETO  FocusRail
-Config MyConfig;
-Camera MyCamera;
-Motor MyMotor;
-Log MyLog;
-*/
 BasicOTA OTA;
 FocusRail Myfr; 
 // Para el servidor web
@@ -178,16 +164,8 @@ void setup()
     #endif
 
     Myfr.initFocusRail();
-	/* ESTO LO HAREMOS DENTRO DE LA CLASE FocusRail
-	//Inicialización de la configuración
-    MyConfig.initConfiguration();
-    //Inicialización del motor
-    MyMotor.initMotor();
-    //Inicialización de la camara
-    MyCamera.initCamera(MyConfig);
-    */
-
-	//Inicialización de la interfaz
+	
+    //Inicialización de la interfaz
     lv_init();
 
     #if LV_USE_LOG != 0
@@ -221,6 +199,8 @@ void setup()
     lv_indev_drv_register(&indev_drv);
 
     ui_init();
+    //Imprimimos en webserial
+    WebSerial.println("UI initialized");
 }
 
 void loop()
@@ -228,4 +208,5 @@ void loop()
     OTA.handle();
     lv_timer_handler();
     delay(5);
+    //WebSerial.println("Loop");
 }

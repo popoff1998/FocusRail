@@ -14,7 +14,7 @@ void Log::println(const char* line)
     {
         Serial.println(line);
     }
-    else if(logType == WEB_LOG)
+    else
     {
         WebSerial.println(line);
     }
@@ -26,7 +26,7 @@ void Log::println(int var)
     {
         Serial.println(var);
     }
-    else if (logType == WEB_LOG)
+    else
     {
         WebSerial.println(var);
     }
@@ -39,7 +39,7 @@ void Log::print(const char* line)
     {
         Serial.print(line);
     }
-    else if(logType == WEB_LOG)
+    else
     {
         WebSerial.print(line);
     }
@@ -51,7 +51,7 @@ void Log::print(int var)
     {
         Serial.print(var);
     }
-    else if (logType == WEB_LOG)
+    else
     {
         WebSerial.print(var);
     }

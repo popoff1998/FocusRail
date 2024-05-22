@@ -114,6 +114,7 @@ void Camera::setCameraIR(int camType)
             irInterface = new Minolta(CAMERA_IR_PIN);
             break;
     }
+    irInterface->begin();
 }
 
 void Camera::setCapProf(int prof)

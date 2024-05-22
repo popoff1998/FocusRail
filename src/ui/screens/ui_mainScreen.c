@@ -18,7 +18,7 @@ void ui_mainScreen_screen_init(void)
     lv_obj_set_x(ui_Label3, -1);
     lv_obj_set_y(ui_Label3, -98);
     lv_obj_set_align(ui_Label3, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label3, "Focus Rail V1.0");
+    lv_label_set_text(ui_Label3, "Focus Rail V1.1");
 
     ui_goConfSc = lv_btn_create(ui_mainScreen);
     lv_obj_set_width(ui_goConfSc, 257);

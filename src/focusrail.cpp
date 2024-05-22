@@ -2,11 +2,6 @@
 
 FocusRail::FocusRail()
 {
-	//Inicializamos las clases
-	config.initConfiguration();
-	log.initLog(config);
-	motor.initMotor(config,log);
-	camera.initCamera(config,log);
 }
 
 FocusRail::~FocusRail()
@@ -15,10 +10,16 @@ FocusRail::~FocusRail()
 
 void FocusRail::initFocusRail()
 {
-	//Inicializamos el motor
-	motor.initMotor(config,log);
-	//Inicializamos la camara
-	camera.initCamera(config,log);
+	// Inicializamos las clases
+	config.initConfiguration();
+	log.initLog(config);
+	motor.initMotor(config, log);
+	camera.initCamera(config, log);
+
+	//Ponemos la camara y el interface por defecto
+	setCamera(CANON);
+	setCameraInterface(IR);
+	
 }
 
 void FocusRail::setMovDistance(int distance)

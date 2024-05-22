@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include <Arduino.h>
 #include "config.hpp"
 // Para webserial

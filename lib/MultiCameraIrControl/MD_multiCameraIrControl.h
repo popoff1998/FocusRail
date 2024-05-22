@@ -42,6 +42,9 @@
 #define multiCameraIrControl_h    // retained in case legacy code checks this
 #endif
 
+//Para ajustar el tiempo de espera de la señal IR
+#define CANON_TIME 15
+
 #include "Arduino.h"
 
 // Base class ---------------------
@@ -56,6 +59,7 @@ class cCamera
     // These will override if not implemented in camera specific classes
     virtual void begin(void) { pinMode(_pin, OUTPUT); }
     virtual void shutterDelayed(void) { delay(SHUTTER_DELAY); shutterNow(); }
+    int canon_time = CANON_TIME;
 
   protected:
     uint8_t _pin;   // LED output pin
