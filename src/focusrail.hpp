@@ -3,6 +3,7 @@
 #include "camera.hpp"
 #include "config.hpp"
 #include "log.hpp"
+#include "ui.h"
 
 //Definimos la clase FocusRail
 class FocusRail
@@ -19,7 +20,15 @@ class FocusRail
 		void setCapProf(int);
 		void setCapFotos(int);
 		void setCapTime(int);
+		void setCanonTime(int);
+		String getSsid();
+		String getPassword();
+		String getHostname();
+		void updateInterfaceFromConfig();
 	private:
+		void updateInterfaceCapture();
+		void updateInterfaceMovement();
+		void updateInterfaceConfig();
 		Motor motor;
 		Camera camera;
 		Config config;

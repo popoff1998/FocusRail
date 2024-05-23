@@ -1,4 +1,6 @@
-SET(SOURCES screens/ui_mainScreen.c
+SET(SOURCES components/ui_comp_label16.c
+    components/ui_comp.c
+    screens/ui_mainScreen.c
     screens/ui_confScreen.c
     screens/ui_movScreen.c
     screens/ui_captScreen.c

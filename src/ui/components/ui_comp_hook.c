@@ -12,3 +12,7 @@ void ui_comp_Screen_1_create_hook(lv_obj_t * comp)
 void ui_comp_Screen1_create_hook(lv_obj_t * comp)
 {
 }
+
+void ui_comp_Label16_create_hook(lv_obj_t * comp)
+{
+}

@@ -244,6 +244,11 @@ void Sony::toggleVideo(void)
 
 // == CANON ==
 
+void Canon::setCanonTime(int time)
+{
+  canon_time = time;
+}
+
 void Canon::shutterNow(void)
 {
  for(uint8_t i = 0; i < 16; i++) 

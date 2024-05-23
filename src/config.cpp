@@ -3,22 +3,27 @@
 //Inicializa la configuración de la aplicación
 void Config::initConfiguration()
 {
-    //Inicializamos variables
-    logType = WEB_LOG;
     Preferences preferences;
     //Inicializamos las preferencias
     preferences.begin("focusrail", false);
+    //Leemos las preferencias
+    readConfiguration();
 }    
 
 //Leemos las preferencias del ESP32
 void Config::readConfiguration()
 {
     //Leemos las preferencias
-    capProf = preferences.getInt("capProf", 10);
-    capFotos = preferences.getInt("capFotos", 10);
-    capTime = preferences.getInt("capTime", 10);
+    capProf = preferences.getInt("capProf", CAPPROF);
+    capFotos = preferences.getInt("capFotos", CAPFOTOS);
+    capTime = preferences.getInt("capTime", CAPTIME);
     camType = preferences.getInt("camType", CANON);
     camInterface = preferences.getInt("camInterface", IR);
+    logType = preferences.getInt("logType", WEB_LOG);
+    canon_time = preferences.getInt("canon_time", CANON_TIME);
+    ssid = preferences.getString("ssid", SSID);
+    password = preferences.getString("password", PASSWORD);
+    hostname = preferences.getString("hostname", HOSTNAME);
 }
 
 //Escribimos las preferencias del ESP32
@@ -30,4 +35,9 @@ void Config::writeConfiguration()
     preferences.putInt("capTime", capTime);
     preferences.putInt("camType", camType);
     preferences.putInt("camInterface", camInterface);
+    preferences.putInt("logType", logType);
+    preferences.putInt("canon_time", canon_time);
+    preferences.putString("ssid", ssid);
+    preferences.putString("password", password);
+    preferences.putString("hostname", hostname);
 }

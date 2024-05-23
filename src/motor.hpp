@@ -31,16 +31,17 @@ class Motor
         void moveMotorDistance(float, bool);
         void moveMotorUntilEndstop(bool);
         void setMovDistance(int);
+        float getMovDistance();
         //Variables de la clase Motor
         float movDistances[5];
-        float movDistance;
     private:
         bool lastDir;
         float lastDistance;
         bool currentDir;
         bool forwardEndStop;
         bool backwardEndStop;
-		Config config;
+        float movDistance;
+        Config config;
 		Log log;
         bool endStopReached();
         bool canMove();

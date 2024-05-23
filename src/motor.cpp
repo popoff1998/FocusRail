@@ -178,3 +178,9 @@ bool Motor::canMove()
     }
     return true;
 }
+
+//Funcion para obtener la distancia de movimiento
+float Motor::getMovDistance()
+{
+    return movDistance;
+}

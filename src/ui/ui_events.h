@@ -12,6 +12,7 @@ extern "C" {
 
 void setCamType(lv_event_t * e);
 void doOtaUpdate(lv_event_t * e);
+void setCanonTime(lv_event_t * e);
 void movDistChange(lv_event_t * e);
 void movBackward(lv_event_t * e);
 void movForward(lv_event_t * e);

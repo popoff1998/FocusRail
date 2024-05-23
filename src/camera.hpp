@@ -22,6 +22,7 @@ class Camera
         void setCapProf(int);
         void setCapFotos(int);
         void setCapTime(int);
+        void setCanonTime(int);
         int getCapProf();
         int getCapFotos();
         int getCapTime();

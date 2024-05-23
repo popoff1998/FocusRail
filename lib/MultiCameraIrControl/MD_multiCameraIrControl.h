@@ -86,9 +86,11 @@ class Canon : public cCamera
 {
   public:
     Canon(uint8_t pin): cCamera(pin, 33) {}
-
+    void setCanonTime(int time);
     void shutterNow(void);
     void shutterDelayed(void);
+  private:
+    int canon_time;
 };
 
 class CanonWLDC100: public cCamera

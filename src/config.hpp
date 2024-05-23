@@ -19,10 +19,23 @@
 #define SERIAL_LOG 0
 #define WEB_LOG 1
 
+//Para la captura
+#define CAPPROF 10
+#define CAPFOTOS 10
+#define CAPTIME 3
+
+//Para Canon
+#define CANON_TIME 15
+
 
 //Variables globales
 #ifndef CONFIG_H
 #define CONFIG_H
+// Para la conexión a la red
+const String SSID = "ORDENA";
+const String PASSWORD = "28duque28";
+const String HOSTNAME = "focusrail";
+
 //Variable Camera
 extern cCamera *camera;
 
@@ -42,7 +55,12 @@ class Config
          int capTime; //Tiempo de captura
          int camType; //Tipo de cámara
          int camInterface; //Interfaz de la cámara
-         int logType;
+         int logType; //Tipo de log
+         int canon_time; //Tiempo de espera de la señal IR para canon
+         // Variables para el ssid y password de la red
+         String ssid;;
+         String password;
+         String hostname;
        private:
          Preferences preferences; // Objeto de preferencias
 };

@@ -38,6 +38,15 @@ void setCamType(lv_event_t * e)
 	//Ponemos camType en funcion del dropdown
 	int camType = lv_dropdown_get_selected(lv_event_get_current_target(e));
 	Myfr.setCamera(camType);
+	// Si la camara es Canon, mostramos el container canonTimeContainer, si no lo ocultamos
+	if(camType == CANON)
+	{
+		lv_obj_clear_flag(ui_canonTimeContainer, LV_OBJ_FLAG_HIDDEN);
+	}
+	else
+	{
+		lv_obj_add_flag(ui_canonTimeContainer, LV_OBJ_FLAG_HIDDEN);
+	}
 }
 
 void setCamInterface(lv_event_t * e)
@@ -75,6 +84,11 @@ void startCapture(lv_event_t * e)
 }
 
 void doOtaUpdate(lv_event_t * e)
+{
+	// Your code here
+}
+
+void setCanonTime(lv_event_t * e)
 {
 	// Your code here
 }

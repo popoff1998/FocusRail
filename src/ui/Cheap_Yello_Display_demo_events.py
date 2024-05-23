@@ -50,3 +50,7 @@ def setCapTime(event_struct):
 def doOtaUpdate(event_struct):
     return
 
+
+def setCanonTime(event_struct):
+    return
+

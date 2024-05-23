@@ -13,6 +13,8 @@ extern "C" {
 #include "lvgl/lvgl.h"
 
 #include "ui_helpers.h"
+#include "components/ui_comp.h"
+#include "components/ui_comp_hook.h"
 #include "ui_events.h"
 
 void bouncingball_Animation(lv_obj_t * TargetObject, int delay);
@@ -38,14 +40,6 @@ extern lv_obj_t * ui_ImgButton1;
 extern lv_obj_t * ui_Label1;
 void ui_event_camType(lv_event_t * e);
 extern lv_obj_t * ui_camType;
-extern lv_obj_t * ui_Label6;
-extern lv_obj_t * ui_defFotosLabel;
-extern lv_obj_t * ui_Label8;
-extern lv_obj_t * ui_defProfLabel;
-void ui_event_profDefSlider(lv_event_t * e);
-extern lv_obj_t * ui_profDefSlider;
-void ui_event_fotosDefSlider(lv_event_t * e);
-extern lv_obj_t * ui_fotosDefSlider;
 extern lv_obj_t * ui_endStopCheck;
 extern lv_obj_t * ui_autoLigthCheck;
 void ui_event_updateButton(lv_event_t * e);
@@ -54,6 +48,11 @@ extern lv_obj_t * ui_Label2;
 extern lv_obj_t * ui_versionLabel;
 extern lv_obj_t * ui_Button2;
 extern lv_obj_t * ui_Label15;
+extern lv_obj_t * ui_canonTimeContainer;
+extern lv_obj_t * ui_canonTimeLabel;
+void ui_event_canonTimeSlider(lv_event_t * e);
+extern lv_obj_t * ui_canonTimeSlider;
+extern lv_obj_t * ui_canonTimeText;
 // SCREEN: ui_movScreen
 void ui_movScreen_screen_init(void);
 extern lv_obj_t * ui_movScreen;
@@ -83,8 +82,8 @@ extern lv_obj_t * ui_capFotLabel;
 extern lv_obj_t * ui_capTimeLabel;
 void ui_event_capProfSlider(lv_event_t * e);
 extern lv_obj_t * ui_capProfSlider;
-void ui_event_capFtoSlider(lv_event_t * e);
-extern lv_obj_t * ui_capFtoSlider;
+void ui_event_capFotSlider(lv_event_t * e);
+extern lv_obj_t * ui_capFotSlider;
 void ui_event_capTimeSlider(lv_event_t * e);
 extern lv_obj_t * ui_capTimeSlider;
 void ui_event_startButton(lv_event_t * e);
@@ -99,6 +98,10 @@ extern lv_obj_t * ui_updateBar;
 // SCREEN: ui_wifiScreen
 void ui_wifiScreen_screen_init(void);
 extern lv_obj_t * ui_wifiScreen;
+extern lv_obj_t * ui_Container2;
+extern lv_obj_t * ui_Label6;
+extern lv_obj_t * ui_Label17;
+extern lv_obj_t * ui_Container3;
 extern lv_obj_t * ui____initial_actions0;
 
 

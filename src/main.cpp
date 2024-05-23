@@ -21,11 +21,6 @@
 #include <ESPAsyncWebServer.h>
 #include <WebSerial.h>
 
-//Variables para el ssid y password de la red
-const char* SSID = "ORDENA";
-const char* PASSWORD = "28duque28";
-const char* HOSTNAME = "focusrail";
-
 // ----------------------------
 // Touch Screen pins
 // ----------------------------
@@ -109,10 +104,19 @@ AsyncWebServer server(80);
 void setup()
 {
     Serial.begin(115200); /* prepare for possible serial debug */
+    //Inicializamos el focusrail
+    #ifdef DEBUG
+    Serial.println("Initializing FocusRail");
+    #endif
 
+    Myfr.initFocusRail();
+
+    #ifdef DEBUG
+    Serial.println("FocusRail initialized");
+    #endif
     // Código de inicialización para el wifi
     WiFi.mode(WIFI_STA);
-    WiFi.begin(SSID, PASSWORD);
+    WiFi.begin(Myfr.getSsid().c_str(), Myfr.getPassword().c_str());
     while (WiFi.waitForConnectResult() != WL_CONNECTED)
     {
         #ifdef DEBUG
@@ -122,10 +126,10 @@ void setup()
         //ESP.restart();
     }
     #ifdef DEBUG
-    Serial.println("Connected to wifi " + String(SSID));
+    Serial.println("Connected to wifi " + String(Myfr.getSsid()));
     #endif
     // Initialize mDNS
-    if (!MDNS.begin(HOSTNAME))
+    if (!MDNS.begin(Myfr.getHostname().c_str()))
     { // Set the hostname to "esp32.local"
         #ifdef DEBUG
         Serial.println("Error setting up MDNS responder!");
@@ -139,7 +143,7 @@ void setup()
     Serial.println("mDNS responder started");
     #endif
     // Inicialización del servicio OTA
-    OTA.setHostname(HOSTNAME);
+    OTA.setHostname(Myfr.getHostname());
     OTA.begin();
     WebSerial.begin(&server);
     server.begin();
@@ -163,7 +167,7 @@ void setup()
     Serial.println("I am LVGL_Arduino");
     #endif
 
-    Myfr.initFocusRail();
+    //Myfr.initFocusRail();
 	
     //Inicialización de la interfaz
     lv_init();
@@ -201,6 +205,13 @@ void setup()
     ui_init();
     //Imprimimos en webserial
     WebSerial.println("UI initialized");
+    #ifdef DEBUG
+    Serial.println("Updating interface from config");
+    #endif
+    Myfr.updateInterfaceFromConfig();
+    #ifdef DEBUG
+    Serial.println("Interface updated");
+    #endif
 }
 
 void loop()

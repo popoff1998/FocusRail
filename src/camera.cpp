@@ -37,26 +37,7 @@ void Camera::capturePhoto()
         captureByIR();
     }
 }
-/* Funcion para iniciar la captura de fotos
-void Camera::capturePhotos()
-{
-    // Calculamos la distancia de movimiento en funcion de captFotos y capProf
-    float distance = (float)capProf / (float)capFotos;
 
-    // Iniciamos la captura de fotos
-    for (int i = 0; i < capFotos; i++)
-    {
-        // Movemos el motor
-        MyMotor.moveMotorDistance(distance, FORWARD);
-        // Esperamos el tiempo de captura
-        delay(capTime * 1000);
-        // Capturamos la foto
-        capturePhoto();
-        // Esperamos un tiempo para que la cámara se prepare para la siguiente foto
-        delay(capTime * 1000);        
-    }
-}
-*/
 //Funcion setCamera
 void Camera::setCamera(int type)
 {
@@ -145,4 +126,10 @@ int Camera::getCapFotos()
 int Camera::getCapTime()
 {
     return capTime;
+}
+
+void Camera::setCanonTime(int time)
+{
+    Canon* canon = (Canon*)irInterface;
+    canon->setCanonTime(time);
 }
