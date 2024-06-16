@@ -1,6 +1,4 @@
-SET(SOURCES components/ui_comp_label16.c
-    components/ui_comp.c
-    screens/ui_mainScreen.c
+SET(SOURCES screens/ui_mainScreen.c
     screens/ui_confScreen.c
     screens/ui_movScreen.c
     screens/ui_captScreen.c
@@ -10,6 +8,7 @@ SET(SOURCES components/ui_comp_label16.c
     components/ui_comp_hook.c
     ui_helpers.c
     ui_events.cpp
+    images/ui_img_wifi32_png.c
     images/ui_img_home_png.c
     images/ui_img_388382192.c
     images/ui_img_1101766569.c

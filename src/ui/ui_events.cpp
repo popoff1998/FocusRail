@@ -7,6 +7,7 @@
 #include "ui.h"
 #include "stdio.h"
 #include "focusrail.hpp"
+#include "wifi.hpp"
 //#include "motor.hpp"
 //#include "camera.hpp"
 
@@ -91,4 +92,20 @@ void doOtaUpdate(lv_event_t * e)
 void setCanonTime(lv_event_t * e)
 {
 	// Your code here
+}
+
+void getWifiNetwork(lv_event_t * e)
+{
+	// Your code here
+}
+
+void initWifiScreen(lv_event_t * e)
+{
+	//Leemos los SSID de las redes wifi disponibles y los metemos en ssidDropdown
+	Wifi Mywifi;
+	WiFiClass networks = Mywifi.getNetworks();
+	for (int i = 0; i < networks.scanComplete(); ++i)
+	{
+		lv_dropdown_add_option(ui_ssidDropdown, networks.SSID(i).c_str(), 0);
+	}
 }

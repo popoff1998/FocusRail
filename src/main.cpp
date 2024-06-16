@@ -48,15 +48,6 @@ static lv_color_t buf[screenWidth * screenHeight / 10];
 
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight); /* TFT instance */
 
-#if LV_USE_LOG != 0
-/* Serial debugging */
-void my_print(const char *buf)
-{
-    Serial.printf(buf);
-    Serial.flush();
-}
-#endif
-
 /* Display flushing */
 void my_disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -101,19 +92,8 @@ FocusRail Myfr;
 // Para el servidor web
 AsyncWebServer server(80);
 
-void setup()
+void connectWifi()
 {
-    Serial.begin(115200); /* prepare for possible serial debug */
-    //Inicializamos el focusrail
-    #ifdef DEBUG
-    Serial.println("Initializing FocusRail");
-    #endif
-
-    Myfr.initFocusRail();
-
-    #ifdef DEBUG
-    Serial.println("FocusRail initialized");
-    #endif
     // Código de inicialización para el wifi
     WiFi.mode(WIFI_STA);
     WiFi.begin(Myfr.getSsid().c_str(), Myfr.getPassword().c_str());
@@ -122,18 +102,24 @@ void setup()
         #ifdef DEBUG
         Serial.println("Connection Failed!");
         #endif
-        delay(5000);
-        //ESP.restart();
+        Myfr.setWifiConnected(false);
+        return;
     }
+    
+    Myfr.setWifiConnected(true);
     #ifdef DEBUG
-    Serial.println("Connected to wifi " + String(Myfr.getSsid()));
-    #endif
+        Serial.println("Connected to wifi " + String(Myfr.getSsid()));
+    #endif  
+}
+
+void initMdns()
+{
     // Initialize mDNS
     if (!MDNS.begin(Myfr.getHostname().c_str()))
     { // Set the hostname to "esp32.local"
-        #ifdef DEBUG
+    #ifdef DEBUG
         Serial.println("Error setting up MDNS responder!");
-        #endif
+    #endif
         while (1)
         {
             delay(1000);
@@ -142,40 +128,20 @@ void setup()
     #ifdef DEBUG
     Serial.println("mDNS responder started");
     #endif
+}
+
+void initOta()
+{
     // Inicialización del servicio OTA
     OTA.setHostname(Myfr.getHostname());
     OTA.begin();
     WebSerial.begin(&server);
     server.begin();
     WebSerial.println("Hello from ESP32");
+}
 
-    //Mostramos los valores de la ip
-    #ifdef DEBUG
-    Serial.println("Ready");
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
-    #endif
-    //Escribimos en webserial
-    WebSerial.println("Ready");
-    WebSerial.print("IP address: ");
-    WebSerial.println(WiFi.localIP());
-    //Inicialización de la pantalla
-    String LVGL_Arduino = "Hello Arduino! ";
-    LVGL_Arduino += String('V') + lv_version_major() + "." + lv_version_minor() + "." + lv_version_patch();
-    #ifdef DEBUG
-    Serial.println(LVGL_Arduino);
-    Serial.println("I am LVGL_Arduino");
-    #endif
-
-    //Myfr.initFocusRail();
-	
-    //Inicialización de la interfaz
-    lv_init();
-
-    #if LV_USE_LOG != 0
-        lv_log_register_print_cb(my_print); /* register print function for debugging */
-    #endif
-
+void initDisplay()
+{
     mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS); /* Start second SPI bus for touchscreen */
     ts.begin(mySpi);                                                  /* Touchscreen init */
     ts.setRotation(1);                                                /* Landscape orientation */
@@ -194,23 +160,51 @@ void setup()
     disp_drv.flush_cb = my_disp_flush;
     disp_drv.draw_buf = &draw_buf;
     lv_disp_drv_register(&disp_drv);
+}
 
+void initInput()
+{
     /*Initialize the (dummy) input device driver*/
     static lv_indev_drv_t indev_drv;
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = my_touchpad_read;
     lv_indev_drv_register(&indev_drv);
+}
 
-    ui_init();
-    //Imprimimos en webserial
-    WebSerial.println("UI initialized");
+void setup()
+{
+    Serial.begin(115200); /* prepare for possible serial debug */
     #ifdef DEBUG
-    Serial.println("Updating interface from config");
+    Serial.println("Initializing FocusRail");
     #endif
-    Myfr.updateInterfaceFromConfig();
+    // Inicializamos el focusrail
+    Myfr.initFocusRail();
+    //Conectamos al wifi
+    connectWifi();
+    //Inicializamos mDNS
+    initMdns();
+    //Inicializamos OTA
+    initOta();
+    //Inicialización de la interfaz lvgl
+    lv_init();
+    //Inicialización del display
+    initDisplay();
+    //Inicialización del input
+    initInput();
+    //Inicialización de la interfaz
+    ui_init();
+    //Activamos o no el icono de wifi
+    if(Myfr.isWifiConnected())
+    {
+        lv_obj_clear_flag(ui_wifiIcon, LV_OBJ_FLAG_HIDDEN);
+    }
+    else
+    {
+        lv_obj_add_flag(ui_wifiIcon, LV_OBJ_FLAG_HIDDEN);
+    }
     #ifdef DEBUG
-    Serial.println("Interface updated");
+        Serial.println("FocusRail initialized");
     #endif
 }
 
@@ -219,5 +213,4 @@ void loop()
     OTA.handle();
     lv_timer_handler();
     delay(5);
-    //WebSerial.println("Loop");
 }

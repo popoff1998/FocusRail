@@ -12,7 +12,6 @@ extern Motor MyMotor;
 void Camera::initCamera(Config config, Log log)
 {
 	// Configuración de los pines de control de la cámara
-	pinMode(CAMERA_CABLE_PIN, OUTPUT);
 	pinMode(CAMERA_IR_PIN, OUTPUT);
 	//Copiamos los valores de configuración
 	capProf = config.capProf;
@@ -27,12 +26,7 @@ void Camera::initCamera(Config config, Log log)
 // Función para capturar una foto
 void Camera::capturePhoto()
 {
-    // Dependiendo de la interfaz de la cámara disparamos de una forma u otra
-    if (camInterface == CABLE)
-    {
-        captureByCable();
-    }
-    else if (camInterface == IR)
+    if (camInterface == IR)
     {
         captureByIR();
     }
@@ -49,15 +43,6 @@ void Camera::setInterface(int interface)
 {
     camInterface = interface;
 }   
-
-// Funcion para disparar la cámara por cable
-void Camera::captureByCable()
-{
-    // Disparamos la cámara
-    digitalWrite(CAMERA_CABLE_PIN, HIGH);
-    delay(100);
-    digitalWrite(CAMERA_CABLE_PIN, LOW);
-}
 
 // Fucnion para disparar la cámara por infrarrojos
 void Camera::captureByIR()

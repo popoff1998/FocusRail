@@ -139,7 +139,14 @@ void FocusRail::updateInterfaceConfig()
 	lv_label_set_text_fmt(ui_canonTimeLabel, "%d", config.canon_time);
 }
 
-	
+void FocusRail::setWifiConnected(bool connected)
+{
+	wifiConnected = connected;
+}	
 
+bool FocusRail::isWifiConnected()
+{
+	return wifiConnected;
+}
 
 // Path: src/focusrail.hpp

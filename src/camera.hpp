@@ -5,8 +5,7 @@
 #include "log.hpp"
 
 // Defines de los pines de control de la cámara
-#define CAMERA_CABLE_PIN 16
-#define CAMERA_IR_PIN 17
+#define CAMERA_IR_PIN 17 //Blue led
 
 class Camera
 {
@@ -29,7 +28,6 @@ class Camera
     private:
         cCamera* irInterface;
 		void captureByIR();
-        void captureByCable();
         // Variables de la clase Camera
         int camType;
         int camInterface;

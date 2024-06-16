@@ -6,6 +6,7 @@
 // Definición de los pines de control del motor
 #define STEP_PIN 22
 #define DIR_PIN 27
+#define SLP_PIN 16 //Green led
 
 // Definición de los pines de control de los finales de carrera
 #define ENDSTOP_PIN 4 //RED led
@@ -32,6 +33,7 @@ class Motor
         void moveMotorUntilEndstop(bool);
         void setMovDistance(int);
         float getMovDistance();
+        void sleepMotor(bool);
         //Variables de la clase Motor
         float movDistances[5];
     private:

@@ -21,6 +21,8 @@ class FocusRail
 		void setCapFotos(int);
 		void setCapTime(int);
 		void setCanonTime(int);
+		bool isWifiConnected();
+		void setWifiConnected(bool);
 		String getSsid();
 		String getPassword();
 		String getHostname();
@@ -29,6 +31,7 @@ class FocusRail
 		void updateInterfaceCapture();
 		void updateInterfaceMovement();
 		void updateInterfaceConfig();
+		bool wifiConnected;
 		Motor motor;
 		Camera camera;
 		Config config;

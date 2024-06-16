@@ -10,6 +10,7 @@ void Motor::initMotor(Config config,Log log)
 	// Configuración de los pines de control del motor
 	pinMode(STEP_PIN, OUTPUT);
 	pinMode(DIR_PIN, OUTPUT);
+    pinMode(SLP_PIN, OUTPUT);
 	pinMode(ENDSTOP_PIN, INPUT_PULLUP);
 	movDistance = 10;
 	movDistances[0] = 9999;
@@ -63,6 +64,13 @@ void Motor::setDir(bool dir)
     digitalWrite(DIR_PIN, dir);
     lastDir = dir;
 }
+
+//Funcion para poner el motor en modo sleep o no
+void Motor::sleepMotor(bool sleep)
+{
+    digitalWrite(SLP_PIN, !sleep);
+}
+
 // Función para mover el motor un número de pasos en una dirección
 void Motor::moveMotorSteps(int steps, bool dir)
 {
@@ -81,6 +89,7 @@ void Motor::moveMotorSteps(int steps, bool dir)
         return;
     }
     // Configuración de la dirección del motor
+    sleepMotor(false);
     setDir(dir);
     // Movimiento del motor
     for (int i = 0; i < abs(steps); i++)
@@ -95,6 +104,7 @@ void Motor::moveMotorSteps(int steps, bool dir)
             {
                 moveMotor();
             }
+            sleepMotor(true);
             return;
         }
         //Movemos el motor 
@@ -111,6 +121,7 @@ void Motor::moveMotorSteps(int steps, bool dir)
             moveMotor();
         }
     }
+    sleepMotor(true);
 }
 
 // Funcion para mover el motor una distancia en milímetros

@@ -54,3 +54,11 @@ def doOtaUpdate(event_struct):
 def setCanonTime(event_struct):
     return
 
+
+def getWifiNetwork(event_struct):
+    return
+
+
+def initWifiScreen(event_struct):
+    return
+
